@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp" >
+
+    <ImageView
+        android:id="@+id/img_list_news_img"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_list_news_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/img_list_news_img"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_list_news_digest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_list_news_title"
+        android:layout_toRightOf="@id/img_list_news_img"
+        android:textColor="#c0c0c0"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_list_comm_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="#c0c0c0"
+        android:textSize="15sp" />
+
+</RelativeLayout>
