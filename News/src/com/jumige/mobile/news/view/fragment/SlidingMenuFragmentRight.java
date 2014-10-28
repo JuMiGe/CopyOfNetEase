@@ -19,6 +19,7 @@ public class SlidingMenuFragmentRight extends ListFragment {
 	/*
 	 * 右滑列表的图片数据
 	 */
+
 	private SimpleAdapter simpleAdapter;
 	private ArrayList<HashMap<String, Object>> dataList;
 	private String itemText[] = new String[] { "新闻", "订阅", "图片", "视频", "跟帖",
@@ -63,10 +64,12 @@ public class SlidingMenuFragmentRight extends ListFragment {
 		// 布局文件fragment_slidingmenu
 		return inflater.inflate(R.layout.list_slidingmenuright, container,
 				false);
+
 	}
 
 	@Override
 	public void onPause() {
+
 		// 当用户离开Fragment时第一个调用这个方法，需要提交一些变化，因为用户很可能不再返回来。
 		super.onPause();
 	}

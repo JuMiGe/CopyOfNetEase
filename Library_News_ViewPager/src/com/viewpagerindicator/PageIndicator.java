@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2011 Patrik Akerfeldt
  * Copyright (C) 2011 Jake Wharton
  *

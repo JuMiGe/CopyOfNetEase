@@ -4,7 +4,7 @@ import com.jumige.mobile.news.model.News;
 
 public interface INews {
 
-	//通过ID查找新闻
+	//根据ID获取新闻
 	public News findNewsById(Integer Id);
 	
 }

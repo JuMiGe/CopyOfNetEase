@@ -17,8 +17,9 @@ import android.support.v4.view.ViewPager;
 import android.view.Window;
 
 public class MainActivity extends FragmentActivity {
-
+	
 	private SlidingMenu menuRight;
+	
 	private NewsTypeDataDb newsTypeDataDb;
 
 	@Override
@@ -27,13 +28,16 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		// 设置标题栏
+		
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
+
 		// 滑动菜单
 		initSlidingMenuRight();
 		// 初始化栏目数据
 		newsTypeDataDb = new NewsTypeDataDb();
 		newsTypeDataDb.initNewsType();
 
+		
 		// ViewPager的代码块
 		FragmentPagerAdapter adapter = new GoogleMusicAdapter(
 				getSupportFragmentManager());
@@ -121,8 +125,7 @@ public class MainActivity extends FragmentActivity {
 
 		@Override
 		public Fragment getItem(int position) {
-			return ViewPagerFragment.newInstance(newsTypeDataDb.onNewsTypeMap
-					.get(position));
+			return ViewPagerFragment.newInstance();
 		}
 
 		@Override
@@ -136,4 +139,6 @@ public class MainActivity extends FragmentActivity {
 			return newsTypeDataDb.onNewsTypeMap.size();
 		}
 	}
+
+	
 }
