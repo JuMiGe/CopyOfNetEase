@@ -1,0 +1,16 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.iml
+*.war
+*.ear
+/.idea
+*/.idea
+*/target
+*/bin
+.classpath
+*/*.settings
+*/gen
