@@ -275,6 +275,15 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int centered=0x7f010083;
+        /**  定义ViewPager自动切换的时间间隔，单位为ms，默认为1000ms； 
+         <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int changeInterval=0x7f0100b0;
         /**  Screen edge padding. 
          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
@@ -343,6 +352,54 @@ containing a value of this type.
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
         public static final int dividerVertical=0x7f010029;
+        /**  定义底部指示物的背景颜色或背景图; 
+         <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int dotsBackground=0x7f0100ae;
+        /**  定义底部指示物的背景颜色或背景图的透明度，取值为0-1,0代表透明; 
+         <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int dotsBgAlpha=0x7f0100af;
+        /**  定义代表非当前页的指示物的样子 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int dotsBlurImage=0x7f0100ad;
+        /**  定义代表当前页的指示物的样子 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int dotsFocusImage=0x7f0100ac;
+        /**  定义底部指示物之间的间距，默认为0 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int dotsSpacing=0x7f0100ab;
+        /**  定义底部指示物所在视图,定义为一个LinearLayout的高度，默认为40像素 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int dotsViewHeight=0x7f0100aa;
         /**  ListPopupWindow comaptibility 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -1570,42 +1627,46 @@ containing a value of this type.
         public static final int head_user=0x7f02005c;
         public static final int ic_launcher=0x7f02005d;
         public static final int icon=0x7f02005e;
-        public static final int indicator_arrow=0x7f02005f;
-        public static final int indicator_bg_bottom=0x7f020060;
-        public static final int indicator_bg_top=0x7f020061;
-        public static final int list_slidingright_comm=0x7f020062;
-        public static final int list_slidingright_news=0x7f020063;
-        public static final int list_slidingright_pic=0x7f020064;
-        public static final int list_slidingright_read=0x7f020065;
-        public static final int list_slidingright_video=0x7f020066;
-        public static final int list_slidingright_voted=0x7f020067;
-        public static final int shadow=0x7f020068;
-        public static final int shadow_slidingmenuright=0x7f020069;
-        public static final int shadowright=0x7f02006a;
-        public static final int slidingleft_activity=0x7f02006b;
-        public static final int slidingleft_app=0x7f02006c;
-        public static final int slidingleft_caipiao=0x7f02006d;
-        public static final int slidingleft_comm=0x7f02006e;
-        public static final int slidingleft_cover=0x7f02006f;
-        public static final int slidingleft_fav=0x7f020070;
-        public static final int slidingleft_game=0x7f020071;
-        public static final int slidingleft_head=0x7f020072;
-        public static final int slidingleft_login=0x7f020073;
-        public static final int slidingleft_mail=0x7f020074;
-        public static final int slidingleft_message=0x7f020075;
-        public static final int slidingleft_player=0x7f020076;
-        public static final int slidingleft_read=0x7f020077;
-        public static final int slidingleft_you=0x7f020078;
-        public static final int titlecolor=0x7f020079;
-        public static final int vpi__tab_indicator=0x7f02007a;
-        public static final int vpi__tab_selected_focused_holo=0x7f02007b;
-        public static final int vpi__tab_selected_holo=0x7f02007c;
-        public static final int vpi__tab_selected_pressed_holo=0x7f02007d;
-        public static final int vpi__tab_unselected_focused_holo=0x7f02007e;
-        public static final int vpi__tab_unselected_holo=0x7f02007f;
-        public static final int vpi__tab_unselected_pressed_holo=0x7f020080;
-        public static final int welcome_ad=0x7f020081;
-        public static final int welcome_logo=0x7f020082;
+        public static final int image1=0x7f02005f;
+        public static final int image2=0x7f020060;
+        public static final int indicator_arrow=0x7f020061;
+        public static final int indicator_bg_bottom=0x7f020062;
+        public static final int indicator_bg_top=0x7f020063;
+        public static final int list_slidingright_comm=0x7f020064;
+        public static final int list_slidingright_news=0x7f020065;
+        public static final int list_slidingright_pic=0x7f020066;
+        public static final int list_slidingright_read=0x7f020067;
+        public static final int list_slidingright_video=0x7f020068;
+        public static final int list_slidingright_voted=0x7f020069;
+        public static final int news_img_no_read=0x7f02006a;
+        public static final int news_img_read=0x7f02006b;
+        public static final int shadow=0x7f02006c;
+        public static final int shadow_slidingmenuright=0x7f02006d;
+        public static final int shadowright=0x7f02006e;
+        public static final int slidingleft_activity=0x7f02006f;
+        public static final int slidingleft_app=0x7f020070;
+        public static final int slidingleft_caipiao=0x7f020071;
+        public static final int slidingleft_comm=0x7f020072;
+        public static final int slidingleft_cover=0x7f020073;
+        public static final int slidingleft_fav=0x7f020074;
+        public static final int slidingleft_game=0x7f020075;
+        public static final int slidingleft_head=0x7f020076;
+        public static final int slidingleft_login=0x7f020077;
+        public static final int slidingleft_mail=0x7f020078;
+        public static final int slidingleft_message=0x7f020079;
+        public static final int slidingleft_player=0x7f02007a;
+        public static final int slidingleft_read=0x7f02007b;
+        public static final int slidingleft_you=0x7f02007c;
+        public static final int titlecolor=0x7f02007d;
+        public static final int vpi__tab_indicator=0x7f02007e;
+        public static final int vpi__tab_selected_focused_holo=0x7f02007f;
+        public static final int vpi__tab_selected_holo=0x7f020080;
+        public static final int vpi__tab_selected_pressed_holo=0x7f020081;
+        public static final int vpi__tab_unselected_focused_holo=0x7f020082;
+        public static final int vpi__tab_unselected_holo=0x7f020083;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f020084;
+        public static final int welcome_ad=0x7f020085;
+        public static final int welcome_logo=0x7f020086;
     }
     public static final class id {
         public static final int action_bar=0x7f050032;
@@ -1619,7 +1680,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f050023;
         public static final int action_menu_presenter=0x7f050024;
         public static final int action_mode_close_button=0x7f05003a;
-        public static final int action_settings=0x7f05007a;
+        public static final int action_settings=0x7f05007b;
         public static final int activity_chooser_view_content=0x7f05003b;
         public static final int activity_main=0x7f050052;
         public static final int always=0x7f050018;
@@ -1633,12 +1694,12 @@ containing a value of this type.
         public static final int button5=0x7f050063;
         public static final int button6=0x7f050064;
         public static final int button7=0x7f050065;
-        public static final int checkBox1=0x7f05006f;
-        public static final int checkBox2=0x7f050070;
-        public static final int checkBox3=0x7f050071;
-        public static final int checkBox4=0x7f050072;
-        public static final int checkBox5=0x7f050073;
-        public static final int checkBox6=0x7f050074;
+        public static final int checkBox1=0x7f050070;
+        public static final int checkBox2=0x7f050071;
+        public static final int checkBox3=0x7f050072;
+        public static final int checkBox4=0x7f050073;
+        public static final int checkBox5=0x7f050074;
+        public static final int checkBox6=0x7f050075;
         public static final int checkbox=0x7f050043;
         public static final int collapseActionView=0x7f05001a;
         public static final int default_activity_button=0x7f05003e;
@@ -1650,7 +1711,7 @@ containing a value of this type.
         public static final int end=0x7f050020;
         public static final int expand_activities_button=0x7f05003c;
         public static final int expanded_menu=0x7f050042;
-        public static final int fl_inner=0x7f05006a;
+        public static final int fl_inner=0x7f05006b;
         public static final int flip=0x7f050008;
         public static final int fullscreen=0x7f05002e;
         public static final int gridview=0x7f050009;
@@ -1663,9 +1724,9 @@ containing a value of this type.
         public static final int img_slidingleft_img1=0x7f05005a;
         public static final int img_slidingleft_img2=0x7f05005d;
         public static final int img_slidingmenu_right=0x7f05005e;
-        public static final int imgbt_title_left=0x7f050077;
-        public static final int imgbt_title_right=0x7f050079;
-        public static final int imgbt_title_user=0x7f050078;
+        public static final int imgbt_title_left=0x7f050078;
+        public static final int imgbt_title_right=0x7f05007a;
+        public static final int imgbt_title_user=0x7f050079;
         public static final int indicator=0x7f050053;
         public static final int left=0x7f05002b;
         public static final int leftMenu=0x7f050066;
@@ -1676,6 +1737,7 @@ containing a value of this type.
         public static final int menuframleft=0x7f050068;
         public static final int menuframright=0x7f050069;
         public static final int middle=0x7f05001f;
+        public static final int my_view_pager=0x7f05006a;
         public static final int never=0x7f050016;
         public static final int none=0x7f05001d;
         public static final int normal=0x7f05000d;
@@ -1687,13 +1749,13 @@ containing a value of this type.
         public static final int pullFromStart=0x7f050001;
         public static final int pullUpFromBottom=0x7f050006;
         public static final int pull_refresh_list=0x7f050067;
-        public static final int pull_to_refresh_image=0x7f05006b;
-        public static final int pull_to_refresh_progress=0x7f05006c;
-        public static final int pull_to_refresh_sub_text=0x7f05006e;
-        public static final int pull_to_refresh_text=0x7f05006d;
+        public static final int pull_to_refresh_image=0x7f05006c;
+        public static final int pull_to_refresh_progress=0x7f05006d;
+        public static final int pull_to_refresh_sub_text=0x7f05006f;
+        public static final int pull_to_refresh_text=0x7f05006e;
         public static final int radio=0x7f050045;
         public static final int right=0x7f05002c;
-        public static final int rightMenu=0x7f050075;
+        public static final int rightMenu=0x7f050076;
         public static final int rotate=0x7f050007;
         public static final int scrollview=0x7f05000b;
         public static final int search_badge=0x7f050048;
@@ -1711,7 +1773,7 @@ containing a value of this type.
         public static final int showCustom=0x7f050014;
         public static final int showHome=0x7f050011;
         public static final int showTitle=0x7f050013;
-        public static final int slidingmenumain=0x7f050076;
+        public static final int slidingmenumain=0x7f050077;
         public static final int split_action_bar=0x7f050034;
         public static final int submit_area=0x7f05004f;
         public static final int tabMode=0x7f05000f;
@@ -1799,13 +1861,14 @@ containing a value of this type.
         public static final int menuframleft=0x7f030021;
         public static final int menuframright=0x7f030022;
         public static final int need_this_for_maven=0x7f030023;
-        public static final int pull_to_refresh_header_horizontal=0x7f030024;
-        public static final int pull_to_refresh_header_vertical=0x7f030025;
-        public static final int right_fragment_menu=0x7f030026;
-        public static final int right_menu_layout=0x7f030027;
-        public static final int slidingmenumain=0x7f030028;
-        public static final int support_simple_spinner_dropdown_item=0x7f030029;
-        public static final int title=0x7f03002a;
+        public static final int news_img_viewpager=0x7f030024;
+        public static final int pull_to_refresh_header_horizontal=0x7f030025;
+        public static final int pull_to_refresh_header_vertical=0x7f030026;
+        public static final int right_fragment_menu=0x7f030027;
+        public static final int right_menu_layout=0x7f030028;
+        public static final int slidingmenumain=0x7f030029;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002a;
+        public static final int title=0x7f03002b;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -3533,6 +3596,161 @@ containing a value of this type.
           @attr name android:windowAnimationStyle
         */
         public static final int MenuView_android_windowAnimationStyle = 0;
+        /**  新闻大图滑动区域的自定义View 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_android_gravity android:gravity}</code></td><td> 定义底部指示物在父View(即示例灰色透明部分)的gravity属性; </td></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_android_scaleType android:scaleType}</code></td><td> 定义ViewPager中ImageView的scale类型,默认为ScaleType.</td></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_changeInterval com.mobile.jumige.news:changeInterval}</code></td><td> 定义ViewPager自动切换的时间间隔，单位为ms，默认为1000ms； </td></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_dotsBackground com.mobile.jumige.news:dotsBackground}</code></td><td> 定义底部指示物的背景颜色或背景图; </td></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_dotsBgAlpha com.mobile.jumige.news:dotsBgAlpha}</code></td><td> 定义底部指示物的背景颜色或背景图的透明度，取值为0-1,0代表透明; </td></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_dotsBlurImage com.mobile.jumige.news:dotsBlurImage}</code></td><td> 定义代表非当前页的指示物的样子 </td></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_dotsFocusImage com.mobile.jumige.news:dotsFocusImage}</code></td><td> 定义代表当前页的指示物的样子 </td></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_dotsSpacing com.mobile.jumige.news:dotsSpacing}</code></td><td> 定义底部指示物之间的间距，默认为0 </td></tr>
+           <tr><td><code>{@link #NewsImgPagerViewMark_dotsViewHeight com.mobile.jumige.news:dotsViewHeight}</code></td><td> 定义底部指示物所在视图,定义为一个LinearLayout的高度，默认为40像素 </td></tr>
+           </table>
+           @see #NewsImgPagerViewMark_android_gravity
+           @see #NewsImgPagerViewMark_android_scaleType
+           @see #NewsImgPagerViewMark_changeInterval
+           @see #NewsImgPagerViewMark_dotsBackground
+           @see #NewsImgPagerViewMark_dotsBgAlpha
+           @see #NewsImgPagerViewMark_dotsBlurImage
+           @see #NewsImgPagerViewMark_dotsFocusImage
+           @see #NewsImgPagerViewMark_dotsSpacing
+           @see #NewsImgPagerViewMark_dotsViewHeight
+         */
+        public static final int[] NewsImgPagerViewMark = {
+            0x010100af, 0x0101011d, 0x7f0100aa, 0x7f0100ab,
+            0x7f0100ac, 0x7f0100ad, 0x7f0100ae, 0x7f0100af,
+            0x7f0100b0
+        };
+        /**
+          <p>
+          @attr description
+           定义底部指示物在父View(即示例灰色透明部分)的gravity属性; 
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#gravity}.
+          @attr name android:gravity
+        */
+        public static final int NewsImgPagerViewMark_android_gravity = 0;
+        /**
+          <p>
+          @attr description
+           定义ViewPager中ImageView的scale类型,默认为ScaleType.FIT_XY 
+          <p>This corresponds to the global attribute
+          resource symbol {@link android.R.attr#scaleType}.
+          @attr name android:scaleType
+        */
+        public static final int NewsImgPagerViewMark_android_scaleType = 1;
+        /**
+          <p>
+          @attr description
+           定义ViewPager自动切换的时间间隔，单位为ms，默认为1000ms； 
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.mobile.jumige.news:changeInterval
+        */
+        public static final int NewsImgPagerViewMark_changeInterval = 8;
+        /**
+          <p>
+          @attr description
+           定义底部指示物的背景颜色或背景图; 
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          <p>This is a private symbol.
+          @attr name com.mobile.jumige.news:dotsBackground
+        */
+        public static final int NewsImgPagerViewMark_dotsBackground = 6;
+        /**
+          <p>
+          @attr description
+           定义底部指示物的背景颜色或背景图的透明度，取值为0-1,0代表透明; 
+
+
+          <p>Must be a floating point value, such as "<code>1.2</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.mobile.jumige.news:dotsBgAlpha
+        */
+        public static final int NewsImgPagerViewMark_dotsBgAlpha = 7;
+        /**
+          <p>
+          @attr description
+           定义代表非当前页的指示物的样子 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name com.mobile.jumige.news:dotsBlurImage
+        */
+        public static final int NewsImgPagerViewMark_dotsBlurImage = 5;
+        /**
+          <p>
+          @attr description
+           定义代表当前页的指示物的样子 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name com.mobile.jumige.news:dotsFocusImage
+        */
+        public static final int NewsImgPagerViewMark_dotsFocusImage = 4;
+        /**
+          <p>
+          @attr description
+           定义底部指示物之间的间距，默认为0 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.mobile.jumige.news:dotsSpacing
+        */
+        public static final int NewsImgPagerViewMark_dotsSpacing = 3;
+        /**
+          <p>
+          @attr description
+           定义底部指示物所在视图,定义为一个LinearLayout的高度，默认为40像素 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name com.mobile.jumige.news:dotsViewHeight
+        */
+        public static final int NewsImgPagerViewMark_dotsViewHeight = 2;
         /** Attributes that can be used with a PullToRefresh.
            <p>Includes the following attributes:</p>
            <table>

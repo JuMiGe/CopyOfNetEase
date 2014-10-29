@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import junit.framework.Test;
 
@@ -9,16 +10,19 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.jumige.mobile.news.adapter.NewsImgPagerViewMark;
 import com.mobile.jumige.news.R;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.support.v4.view.ViewPager;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
@@ -28,11 +32,11 @@ public class ViewPagerFragment extends ListFragment {
 	// 定义一个下拉刷新的ListView
 	private PullToRefreshListView pullListRefresh;
 	private View view;
-
+	private View view2;
+	
 	/*
 	 * 模拟新闻列表的数据
 	 */
-
 	private SimpleAdapter simpleAdapter;
 	private ArrayList<HashMap<String, Object>> dataList = new ArrayList<HashMap<String, Object>>();
 	private HashMap<String, Object> dataMap;
@@ -54,7 +58,7 @@ public class ViewPagerFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 
 		/*
-		 * / 生成数据源
+		 * 生成数据源
 		 */
 		for (int i = 0; i < newsImage.length; i++) {
 			dataMap = new HashMap<String, Object>();
@@ -80,11 +84,18 @@ public class ViewPagerFragment extends ListFragment {
 			Bundle savedInstanceState) {
 		// 创建一个View获得ListView的布局ID。Fragment是不能findViewById的
 		view = inflater.inflate(R.layout.list_news_viewpager, container, false);
-		
+		view2 = inflater.inflate(R.layout.news_img_viewpager, container, false);
 		// ID声明
 		pullListRefresh = (PullToRefreshListView) view
 				.findViewById(R.id.pull_refresh_list);
 
+		// 大图滑动区域，添加了一个ViewPager
+		pullListRefresh.getRefreshableView().addHeaderView(
+				inflater.inflate(R.layout.news_img_viewpager, null));
+//		NewsImgPagerViewMark pager = (NewsImgPagerViewMark) view2
+//				.findViewById(R.id.my_view_pager);
+//		
+//		pager.setViewPagerViews(views);
 		// 给个监听，当应该被刷新的时候
 		pullListRefresh.setOnRefreshListener(new OnRefreshListener<ListView>() {
 			@Override
