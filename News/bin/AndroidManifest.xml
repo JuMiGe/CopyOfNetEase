@@ -26,6 +26,10 @@
             android:name="com.jumige.mobile.news.activity.MainActivity"
             android:theme="@style/title" >
         </activity>
+        <activity
+            android:name="com.jumige.mobile.news.activity.WeatherActivity"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>

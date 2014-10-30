@@ -1,12 +1,15 @@
 package com.jumige.mobile.news.activity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jumige.mobile.news.db.NewsTypeDataDb;
 import com.jumige.mobile.news.view.fragment.SlidingMenuFragmentLeft;
 import com.jumige.mobile.news.view.fragment.SlidingMenuFragmentRight;
 import com.jumige.mobile.news.view.fragment.ViewPagerFragment;
-import com.mobile.jumige.news.R;
 import com.viewpagerindicator.TabPageIndicator;
+import com.mobile.jumige.news.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,31 +17,107 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ImageView;
 
 public class MainActivity extends FragmentActivity {
-	
+
 	private SlidingMenu menuRight;
-	
+
 	private NewsTypeDataDb newsTypeDataDb;
+	private ImageView img_title_left;
+	private ImageView img_title_right;
+	private ImageView img_title_user;
+	private OnClickListener listener;
+
+	// 下拉菜单
+	private PopMenu popMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		// 设置标题栏
-		
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
 
+		// 设置标题栏
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
+		// findViewById
+		initFindViewById();
 		// 滑动菜单
 		initSlidingMenuRight();
 		// 初始化栏目数据
 		newsTypeDataDb = new NewsTypeDataDb();
 		newsTypeDataDb.initNewsType();
+		// ViewPager的代码块(对ViewPager进行适配，初始化其Tab栏)
+		initViewPager();
 
-		
-		// ViewPager的代码块
+		// 初始化监听器
+		initListener();
+		popMenu = new PopMenu(MainActivity.this);
+
+	}
+
+	// 初始化监听器
+	private void initListener() {
+
+		listener = new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				switch (v.getId()) {
+				case R.id.img_title_left:
+					// 用来封装SlidingMenu
+					ArrayList<SlidingMenu> listMenuData = new ArrayList<SlidingMenu>();
+					listMenuData.add(menuRight);
+					SlidingMenuFragmentRight.newInstance(listMenuData);
+					// 点击“网易”标题，弹出右滑菜单
+					if (menuRight.isMenuShowing()) {
+						menuRight.showContent(true);
+					} else {
+						menuRight.showMenu(true);
+					}
+
+					break;
+				case R.id.img_title_user:
+					// 点击“用户”图标，弹出左滑菜单
+					if (menuRight.isMenuShowing()) {
+						menuRight.showContent(true);
+					} else {
+						menuRight.showSecondaryMenu(true);
+					}
+
+					break;
+				case R.id.img_title_right:
+
+					popMenu.showAsDropDown(v);
+					// 菜单项点击监听器
+					// popMenu.setOnItemClickListener(popMenuItemClickListener);
+					break;
+
+				default:
+					break;
+				}
+
+			}
+		};
+		img_title_left.setOnClickListener(listener);
+		img_title_user.setOnClickListener(listener);
+		img_title_right.setOnClickListener(listener);
+	}
+
+	// findViewById
+	private void initFindViewById() {
+		// 更多菜单的初始化
+
+		img_title_left = (ImageView) findViewById(R.id.img_title_left);
+		img_title_right = (ImageView) findViewById(R.id.img_title_right);
+		img_title_user = (ImageView) findViewById(R.id.img_title_user);
+	}
+
+	// ViewPager的代码块(对ViewPager进行适配，初始化其Tab栏)
+	private void initViewPager() {
 		FragmentPagerAdapter adapter = new GoogleMusicAdapter(
 				getSupportFragmentManager());
 
@@ -93,6 +172,7 @@ public class MainActivity extends FragmentActivity {
 
 		// 设置右侧菜单的布局文件
 		menuRight.setSecondaryMenu(R.layout.menuframleft);
+
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.menuframright, new SlidingMenuFragmentRight())
 				.commit();
@@ -102,6 +182,7 @@ public class MainActivity extends FragmentActivity {
 				.commit();
 		// 右侧菜单的阴影图片
 		// menuRight.setSecondaryShadowDrawable(R.drawable.shadowright);
+
 	}
 
 	@Override
@@ -140,5 +221,4 @@ public class MainActivity extends FragmentActivity {
 		}
 	}
 
-	
 }

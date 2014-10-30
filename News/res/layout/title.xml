@@ -4,27 +4,30 @@
     android:layout_height="wrap_content" >
 
     <ImageView
-        android:id="@+id/imgbt_title_left"
+        android:id="@+id/img_title_left"
         android:layout_width="100dp"
         android:layout_height="fill_parent"
         android:layout_alignParentLeft="true"
+        android:src="@drawable/head_left"
         android:gravity="center"
-        android:src="@drawable/head_left" />
+        android:scaleType="fitXY" />
 
     <ImageView
-        android:id="@+id/imgbt_title_user"
+        android:id="@+id/img_title_user"
         android:layout_width="55dp"
         android:layout_height="fill_parent"
-        android:layout_toLeftOf="@+id/imgbt_title_right"
+        android:layout_toLeftOf="@+id/img_title_right"
+        android:src="@drawable/head_user"
         android:gravity="center"
-        android:src="@drawable/head_user" />
+        android:scaleType="fitXY" />
 
     <ImageView
-        android:id="@+id/imgbt_title_right"
+        android:id="@+id/img_title_right"
         android:layout_width="55dp"
         android:layout_height="fill_parent"
         android:layout_alignParentRight="true"
+        android:src="@drawable/head_right"
         android:gravity="center"
-        android:src="@drawable/head_right" />
+        android:scaleType="fitXY" />
 
 </RelativeLayout>

@@ -1,25 +1,36 @@
 ﻿package com.jumige.mobile.news.view.fragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnCloseListener;
+import com.jumige.mobile.news.activity.MainActivity;
 import com.mobile.jumige.news.R;
 
+import android.accounts.NetworkErrorException;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Switch;
+import android.widget.Toast;
 
 /*
  * 用来实现右滑的List
  */
-public class SlidingMenuFragmentRight extends ListFragment {
+public class SlidingMenuFragmentRight extends ListFragment implements
+		Serializable {
 	/*
 	 * 右滑列表的图片数据
 	 */
-
+	private ArrayList<SlidingMenu> listMenuData;
+	private SlidingMenu menuRight;
 	private SimpleAdapter simpleAdapter;
 	private ArrayList<HashMap<String, Object>> dataList;
 	private String itemText[] = new String[] { "新闻", "订阅", "图片", "视频", "跟帖",
@@ -32,12 +43,37 @@ public class SlidingMenuFragmentRight extends ListFragment {
 			R.drawable.list_slidingright_voted };
 
 	/*
+	 * 同过newInstance方法，返回一个Bundle封装的Slidmenu对象
+	 */
+	public static SlidingMenuFragmentRight newInstance(
+			ArrayList<SlidingMenu> list) {
+
+		SlidingMenuFragmentRight newFragment = new SlidingMenuFragmentRight();
+
+		Bundle bundle = new Bundle();
+		bundle.putSerializable("slidData", list);
+		newFragment.setArguments(bundle);
+		return newFragment;
+
+	}
+
+	/*
 	 * Fragment必须实现的三个回调函数
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// 系统在创建Fragment的时候调用这个方法，这里应该初始化相关的组件，一些即便是被暂停或者被停止时依然需要保留的东西.
 		super.onCreate(savedInstanceState);
+		/*
+		 * 接收传回来的SlidingMenu
+		 */
+		Bundle args = getArguments();
+		if (args != null) {
+			listMenuData = (ArrayList<SlidingMenu>) args
+					.getSerializable("slidData");
+			menuRight = (SlidingMenu) listMenuData.get(0);
+		}
 		dataList = new ArrayList<HashMap<String, Object>>();
 
 		/*
@@ -74,4 +110,26 @@ public class SlidingMenuFragmentRight extends ListFragment {
 		super.onPause();
 	}
 
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		// 右滑菜单的点击监听
+		super.onListItemClick(l, v, position, id);
+		switch (position) {
+		case 0:
+			menuRight.showContent(true);
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+
+		default:
+			break;
+		}
+	}
 }

@@ -16,6 +16,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
 	private Drawable dotsFocusImage;
 	private Drawable dotsBlurImage;
 	private ScaleType scaleType = ScaleType.FIT_XY;
-	private int gravity;
+	private int gravity = Gravity.RIGHT;
 	private Drawable dotsBackground;
 	private float dotsBgAlpha;
 	private int changeInterval;
@@ -127,8 +128,8 @@ public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
 		addView(viewPager, lp);
-		newsImgTitle.setText("图片新闻的标题");
-		addView(newsImgTitle, lp);
+//		newsImgTitle.setText("图片新闻的标题");
+//		addView(newsImgTitle, lp);
 		if (dotsBackground != null) {
 			dotsBackground.setAlpha((int) (dotsBgAlpha * 255));
 			viewDots.setBackground(dotsBackground);
