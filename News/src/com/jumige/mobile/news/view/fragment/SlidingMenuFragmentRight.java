@@ -7,7 +7,7 @@ import java.util.HashMap;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu.OnCloseListener;
 import com.jumige.mobile.news.activity.MainActivity;
-import com.mobile.jumige.news.R;
+import com.jumige.mobile.news.R;
 
 import android.accounts.NetworkErrorException;
 import android.content.Intent;
@@ -24,8 +24,7 @@ import android.widget.Toast;
 /*
  * 用来实现右滑的List
  */
-public class SlidingMenuFragmentRight extends ListFragment implements
-		Serializable {
+public class SlidingMenuFragmentRight extends ListFragment {
 	/*
 	 * 右滑列表的图片数据
 	 */
@@ -49,7 +48,6 @@ public class SlidingMenuFragmentRight extends ListFragment implements
 			ArrayList<SlidingMenu> list) {
 
 		SlidingMenuFragmentRight newFragment = new SlidingMenuFragmentRight();
-
 		Bundle bundle = new Bundle();
 		bundle.putSerializable("slidData", list);
 		newFragment.setArguments(bundle);
@@ -65,6 +63,7 @@ public class SlidingMenuFragmentRight extends ListFragment implements
 	public void onCreate(Bundle savedInstanceState) {
 		// 系统在创建Fragment的时候调用这个方法，这里应该初始化相关的组件，一些即便是被暂停或者被停止时依然需要保留的东西.
 		super.onCreate(savedInstanceState);
+		dataList = new ArrayList<HashMap<String, Object>>();
 		/*
 		 * 接收传回来的SlidingMenu
 		 */
@@ -72,9 +71,9 @@ public class SlidingMenuFragmentRight extends ListFragment implements
 		if (args != null) {
 			listMenuData = (ArrayList<SlidingMenu>) args
 					.getSerializable("slidData");
+
 			menuRight = (SlidingMenu) listMenuData.get(0);
 		}
-		dataList = new ArrayList<HashMap<String, Object>>();
 
 		/*
 		 * 生成6个数据源
@@ -98,6 +97,7 @@ public class SlidingMenuFragmentRight extends ListFragment implements
 			Bundle savedInstanceState) {
 		// 当第一次绘制Fragment的UI时系统调用这个方法，必须返回一个View，如果Fragment不提供UI也可以返回null。
 		// 布局文件fragment_slidingmenu
+
 		return inflater.inflate(R.layout.list_slidingmenuright, container,
 				false);
 
@@ -116,6 +116,7 @@ public class SlidingMenuFragmentRight extends ListFragment implements
 		super.onListItemClick(l, v, position, id);
 		switch (position) {
 		case 0:
+
 			menuRight.showContent(true);
 			break;
 		case 1:

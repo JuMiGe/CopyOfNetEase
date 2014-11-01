@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.jumige.mobile.news.view.fragment.SlippageViewPager;
-import com.mobile.jumige.news.R;
+import com.jumige.mobile.news.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

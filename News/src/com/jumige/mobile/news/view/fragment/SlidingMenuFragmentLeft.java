@@ -2,18 +2,28 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.zip.Inflater;
 
-import com.mobile.jumige.news.R;
+import com.jumige.mobile.news.R;
+import com.jumige.mobile.news.activity.LoginActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class SlidingMenuFragmentLeft extends ListFragment {
 
+	private TextView tv_login;
+	private View v;
+	private OnClickListener listener;
 	/*
 	 * 左滑的数据加载
 	 */
@@ -35,6 +45,7 @@ public class SlidingMenuFragmentLeft extends ListFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		// 系统在创建Fragment的时候调用这个方法，这里应该初始化相关的组件，一些即便是被暂停或者被停止时依然需要保留的东西.
 		super.onCreate(savedInstanceState);
+
 		// 生成四个数据源
 		for (int i = 0; i < itemImg1.length; i++) {
 			HashMap<String, Object> dataMap = new HashMap<String, Object>();
@@ -53,13 +64,62 @@ public class SlidingMenuFragmentLeft extends ListFragment {
 		this.setListAdapter(simpleAdapter);
 	}
 
+	private void initListener() {
+		listener = new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				switch (v.getId()) {
+				case R.id.tv_slidingright_login:
+					// 点击登录，跳转到登录界面
+					Intent intent = new Intent(getActivity(),
+							LoginActivity.class);
+					getActivity().startActivity(intent);
+					break;
+
+				case R.id.tv_slidingright_score:
+					// 点击“积分”
+					Toast.makeText(getActivity(), "等。。。。。", Toast.LENGTH_LONG)
+							.show();
+					break;
+				case R.id.tv_slidingleft_gohead:
+					Toast.makeText(getActivity(), "没实现、、、没实现",
+							Toast.LENGTH_LONG).show();
+					break;
+				case R.id.tv_slidingleft_gocover:
+					Toast.makeText(getActivity(), "没实现、、、没实现",
+							Toast.LENGTH_LONG).show();
+					break;
+				case R.id.tv_slidingleft_email:
+					Toast.makeText(getActivity(), "没实现、、、没实现",
+							Toast.LENGTH_LONG).show();
+					break;
+				case R.id.tv_slidingleft_message:
+					Toast.makeText(getActivity(), "没实现、、、没实现",
+							Toast.LENGTH_LONG).show();
+					break;
+				case R.id.tv_slidingleft_caipiao:
+					Toast.makeText(getActivity(), "没实现、、、没实现",
+							Toast.LENGTH_LONG).show();
+					break;
+				}
+
+			}
+		};
+	}
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// 当第一次绘制Fragment的UI时系统调用这个方法，必须返回一个View，如果Fragment不提供UI也可以返回null。
 		// 布局文件fragment_slidingmenu
-		return inflater.inflate(R.layout.fragment_slidingmenuleft, container,
+		v = inflater.inflate(R.layout.fragment_slidingmenuleft, container,
 				false);
+		// 初始化监听器
+		initListener();
+		tv_login = (TextView) v.findViewById(R.id.tv_slidingright_login);
+		tv_login.setOnClickListener(listener);
+		return v;
 	}
 
 	@Override
@@ -68,4 +128,25 @@ public class SlidingMenuFragmentLeft extends ListFragment {
 		super.onPause();
 	}
 
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		switch (position) {
+		case 0:
+			Toast.makeText(getActivity(), "该功能还未实现", Toast.LENGTH_LONG).show();
+			break;
+		case 1:
+			Toast.makeText(getActivity(), "该功能还未实现", Toast.LENGTH_LONG).show();
+			break;
+		case 2:
+			Toast.makeText(getActivity(), "该功能还未实现", Toast.LENGTH_LONG).show();
+			break;
+		case 3:
+			Toast.makeText(getActivity(), "该功能还未实现", Toast.LENGTH_LONG).show();
+			break;
+		default:
+			break;
+		}
+	}
 }

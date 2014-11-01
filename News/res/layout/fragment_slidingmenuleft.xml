@@ -14,7 +14,7 @@
         android:background="#e0000000" >
 
         <TextView
-            android:id="@+id/tv_slidingmenu_right"
+            android:id="@+id/tv_slidingright_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -25,9 +25,10 @@
             android:textSize="20sp" />
 
         <TextView
+            android:id="@+id/tv_slidingright_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_slidingmenu_right"
+            android:layout_below="@id/tv_slidingright_login"
             android:layout_centerHorizontal="true"
             android:text="@string/slidingright_score"
             android:textColor="#ffe384" />
@@ -84,6 +85,7 @@
         android:orientation="horizontal" >
 
         <TextView
+            android:id="@+id/tv_slidingleft_gohead"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -94,6 +96,7 @@
             android:textColor="#c0c0c0" />
 
         <TextView
+            android:id="@+id/tv_slidingleft_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -104,6 +107,7 @@
             android:textColor="#c0c0c0" />
 
         <TextView
+            android:id="@+id/tv_slidingleft_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -114,6 +118,7 @@
             android:textColor="#c0c0c0" />
 
         <TextView
+            android:id="@+id/tv_slidingleft_gocover"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -124,6 +129,7 @@
             android:textColor="#c0c0c0" />
 
         <TextView
+            android:id="@+id/tv_slidingleft_caipiao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

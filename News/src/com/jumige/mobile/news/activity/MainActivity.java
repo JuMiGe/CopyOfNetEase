@@ -1,7 +1,6 @@
 package com.jumige.mobile.news.activity;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jumige.mobile.news.db.NewsTypeDataDb;
@@ -9,7 +8,7 @@ import com.jumige.mobile.news.view.fragment.SlidingMenuFragmentLeft;
 import com.jumige.mobile.news.view.fragment.SlidingMenuFragmentRight;
 import com.jumige.mobile.news.view.fragment.ViewPagerFragment;
 import com.viewpagerindicator.TabPageIndicator;
-import com.mobile.jumige.news.R;
+import com.jumige.mobile.news.R;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,6 +30,7 @@ public class MainActivity extends FragmentActivity {
 	private ImageView img_title_right;
 	private ImageView img_title_user;
 	private OnClickListener listener;
+	private ArrayList<SlidingMenu> listMenuData;
 
 	// 下拉菜单
 	private PopMenu popMenu;
@@ -42,7 +42,8 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 
 		// 设置标题栏
-		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title);
+		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
+				R.layout.title_main);
 		// findViewById
 		initFindViewById();
 		// 滑动菜单
@@ -68,12 +69,10 @@ public class MainActivity extends FragmentActivity {
 			public void onClick(View v) {
 				switch (v.getId()) {
 				case R.id.img_title_left:
-					// 用来封装SlidingMenu
-					ArrayList<SlidingMenu> listMenuData = new ArrayList<SlidingMenu>();
-					listMenuData.add(menuRight);
-					SlidingMenuFragmentRight.newInstance(listMenuData);
-					// 点击“网易”标题，弹出右滑菜单
+
+					// 点击“网易”标题，弹出右滑菜单b
 					if (menuRight.isMenuShowing()) {
+
 						menuRight.showContent(true);
 					} else {
 						menuRight.showMenu(true);
@@ -169,12 +168,19 @@ public class MainActivity extends FragmentActivity {
 		// menuRight.OnClosedListener(OnClosedListener);
 		// 监听SlidingMenu关闭后事件
 		// menuRight.OnClosedListener(OnClosedListener);
+		// 用来封装SlidingMenu
+		listMenuData = new ArrayList<SlidingMenu>();
+		listMenuData.add(menuRight);
 
 		// 设置右侧菜单的布局文件
 		menuRight.setSecondaryMenu(R.layout.menuframleft);
-
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.menuframright, new SlidingMenuFragmentRight())
+		// 用来封装SlidingMenu
+		listMenuData = new ArrayList<SlidingMenu>();
+		listMenuData.add(menuRight);
+		getSupportFragmentManager()
+				.beginTransaction()
+				.replace(R.id.menuframright,
+						SlidingMenuFragmentRight.newInstance(listMenuData))
 				.commit();
 
 		getSupportFragmentManager().beginTransaction()

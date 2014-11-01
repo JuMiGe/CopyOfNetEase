@@ -2,7 +2,7 @@ package com.jumige.mobile.news.activity;
 
 import java.util.ArrayList;
 import com.jumige.mobile.news.tools.NotificationTool;
-import com.mobile.jumige.news.R;
+import com.jumige.mobile.news.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -101,14 +101,34 @@ public class PopMenu {
 					break;
 				case 2:
 					// 点击“夜间”按钮(涉及到太多图片，这里不做处理)
+					TextView t1 = (TextView) listView.getChildAt(position)
+							.findViewById(R.id.tv_morelist_text);
+					if (t1.getText().toString().equals("夜间")) {
+						t1.setText("日间");
+						listView.deferNotifyDataSetChanged();
+					} else {
+						t1.setText("夜间");
+						listView.deferNotifyDataSetChanged();
+					}
+
 					Toast.makeText(context, "涉及到太多图片，这里不做处理", Toast.LENGTH_LONG)
 							.show();
 					break;
 				case 3:
-
+					//点击“搜索”按钮,跳转页面
+					Intent intent1 = new Intent(context,
+							SearchNewsActivity.class);
+					context.startActivity(intent1);
 					break;
 
-				default:
+				case 4:
+					//点击“扫一扫”，（该功能先放一放）
+					Toast.makeText(context, "该功能先放一放", Toast.LENGTH_LONG)
+					.show();
+					break;
+				case 5:
+					//点击“设置”
+					
 					break;
 				}
 

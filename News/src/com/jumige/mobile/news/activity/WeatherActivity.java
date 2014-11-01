@@ -1,6 +1,6 @@
 package com.jumige.mobile.news.activity;
 
-import com.mobile.jumige.news.R;
+import com.jumige.mobile.news.R;
 
 import android.app.Activity;
 import android.os.Bundle;

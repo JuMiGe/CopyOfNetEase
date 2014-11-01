@@ -28,40 +28,40 @@ public final class R {
 		public static final int right_menu_width = 0x7f09000e;
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f020060;
-		public static final int shadow = 0x7f020076;
-		public static final int shadowright = 0x7f020078;
+		public static final int ic_launcher = 0x7f020061;
+		public static final int shadow = 0x7f02007d;
+		public static final int shadowright = 0x7f02007f;
 	}
 	public static final class id {
-		public static final int button1 = 0x7f050061;
-		public static final int button2 = 0x7f050062;
-		public static final int button3 = 0x7f050063;
-		public static final int button4 = 0x7f050064;
-		public static final int button5 = 0x7f050065;
-		public static final int button6 = 0x7f050066;
-		public static final int button7 = 0x7f050067;
-		public static final int checkBox1 = 0x7f050073;
-		public static final int checkBox2 = 0x7f050074;
-		public static final int checkBox3 = 0x7f050075;
-		public static final int checkBox4 = 0x7f050076;
-		public static final int checkBox5 = 0x7f050077;
-		public static final int checkBox6 = 0x7f050078;
+		public static final int button1 = 0x7f050071;
+		public static final int button2 = 0x7f050072;
+		public static final int button3 = 0x7f050073;
+		public static final int button4 = 0x7f050074;
+		public static final int button5 = 0x7f050075;
+		public static final int button6 = 0x7f050076;
+		public static final int button7 = 0x7f050077;
+		public static final int checkBox1 = 0x7f050083;
+		public static final int checkBox2 = 0x7f050084;
+		public static final int checkBox3 = 0x7f050085;
+		public static final int checkBox4 = 0x7f050086;
+		public static final int checkBox5 = 0x7f050087;
+		public static final int checkBox6 = 0x7f050088;
 		public static final int fullscreen = 0x7f050008;
 		public static final int left = 0x7f050005;
-		public static final int leftMenu = 0x7f050068;
+		public static final int leftMenu = 0x7f050078;
 		public static final int margin = 0x7f050007;
 		public static final int right = 0x7f050006;
-		public static final int rightMenu = 0x7f050079;
+		public static final int rightMenu = 0x7f050089;
 		public static final int selected_view = 0x7f050009;
-		public static final int slidingmenumain = 0x7f05007a;
+		public static final int slidingmenumain = 0x7f05008a;
 	}
 	public static final class layout {
-		public static final int activity_main = 0x7f030017;
-		public static final int left_fragment_menu = 0x7f03001f;
-		public static final int left_menu_layout = 0x7f030020;
-		public static final int right_fragment_menu = 0x7f03002a;
-		public static final int right_menu_layout = 0x7f03002b;
-		public static final int slidingmenumain = 0x7f03002c;
+		public static final int activity_main = 0x7f030018;
+		public static final int left_fragment_menu = 0x7f030021;
+		public static final int left_menu_layout = 0x7f030022;
+		public static final int right_fragment_menu = 0x7f03002c;
+		public static final int right_menu_layout = 0x7f03002d;
+		public static final int slidingmenumain = 0x7f03002e;
 	}
 	public static final class string {
 		public static final int action_settings = 0x7f0b0001;

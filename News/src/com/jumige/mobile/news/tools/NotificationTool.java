@@ -1,7 +1,7 @@
 package com.jumige.mobile.news.tools;
 
 import com.jumige.mobile.news.activity.MainActivity;
-import com.mobile.jumige.news.R;
+import com.jumige.mobile.news.R;
 
 import android.app.Activity;
 import android.app.Notification;

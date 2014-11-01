@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mobile.jumige.news"
+    package="com.jumige.mobile.news"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -29,6 +29,14 @@
         <activity
             android:name="com.jumige.mobile.news.activity.WeatherActivity"
             android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.jumige.mobile.news.activity.SearchNewsActivity"
+            android:theme="@style/title" >
+        </activity>
+        <activity android:name="com.jumige.mobile.news.activity.LoginActivity" 
+            android:theme="@style/title"
+            >
         </activity>
     </application>
 

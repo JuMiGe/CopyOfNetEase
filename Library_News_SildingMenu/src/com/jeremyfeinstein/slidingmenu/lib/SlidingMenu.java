@@ -1,5 +1,6 @@
 package com.jeremyfeinstein.slidingmenu.lib;
 
+import java.io.Serializable;
 import java.lang.reflect.Method;
 
 import android.annotation.SuppressLint;
@@ -30,7 +31,7 @@ import android88.slidingmenu.demo.R;
 
 import com.jeremyfeinstein.slidingmenu.lib.CustomViewAbove.OnPageChangeListener;
 
-public class SlidingMenu extends RelativeLayout {
+public class SlidingMenu extends RelativeLayout implements Serializable {
 
 	private static final String TAG = "SlidingMenu";
 

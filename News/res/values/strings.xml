@@ -14,5 +14,16 @@
     <string name="slidingright_cover">上封面</string>
     <string name="slidingright_comm">跟帖</string>
     <string name="slidingright_caipiao">彩票</string>
+    <string name="search_title">搜索新闻</string>
+    <string name="search_editext">请输入关键字...</string>
+    <string name="login_title">登录</string>
+    <string name="login_user">网易通行证/手机号</string>
+    <string name="login_password">密码</string>
+    <string name="login_login">登录</string>
+    <string name="login_login_way">还可以选择以下方式登录</string>
+    <string name="login_login_sina">新浪微博登录</string>
+    <string name="login_login_qq">QQ账号登录</string>
+    <string name="login_login_forget">忘记密码?</string>
+    <string name="login_login_register">注册网易通行证</string>
 
 </resources>
