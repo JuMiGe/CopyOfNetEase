@@ -1,36 +1,52 @@
 package com.jumige.mobile.news.activity;
 
-import java.util.ArrayList;
-
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jumige.mobile.news.adapter.MenuLeftAdapter;
+import com.jumige.mobile.news.adapter.MenuRightAdapter;
 import com.jumige.mobile.news.db.NewsTypeDataDb;
-import com.jumige.mobile.news.view.fragment.SlidingMenuFragmentLeft;
-import com.jumige.mobile.news.view.fragment.SlidingMenuFragmentRight;
 import com.jumige.mobile.news.view.fragment.ViewPagerFragment;
-import com.viewpagerindicator.TabPageIndicator;
 import com.jumige.mobile.news.R;
+import com.viewpagerindicator.TabPageIndicator;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity {
 
-	private SlidingMenu menuRight;
-
+	private MenuLeftAdapter menuLeftAdapter;
+	private MenuRightAdapter menuRightAdapter;
+	private DrawerLayout mDrawer_layout;// DrawerLayout容器
+	private RelativeLayout mMenu_layout_left;// 左边抽屉
+	private LinearLayout mMenu_layout_right;// 右边抽屉
+	private ListView menu_listview_left;
+	private ListView menu_listview_right;
 	private NewsTypeDataDb newsTypeDataDb;
 	private ImageView img_title_left;
 	private ImageView img_title_right;
 	private ImageView img_title_user;
 	private OnClickListener listener;
-	private ArrayList<SlidingMenu> listMenuData;
+	private TextView tv_menu_right_login;
+	private TextView tv_menu_right_score;
+	private TextView tv_menu_right_message;
+	private TextView tv_menu_right_email;
+	private TextView tv_menu_right_gohead;
+	private TextView tv_menu_right_gocover;
+	private TextView tv_menu_right_caipiao;
 
 	// 下拉菜单
 	private PopMenu popMenu;
@@ -40,20 +56,18 @@ public class MainActivity extends FragmentActivity {
 		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
 		// 设置标题栏
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 				R.layout.title_main);
 		// findViewById
 		initFindViewById();
 		// 滑动菜单
-		initSlidingMenuRight();
+		initDrawerLayout();
 		// 初始化栏目数据
 		newsTypeDataDb = new NewsTypeDataDb();
 		newsTypeDataDb.initNewsType();
 		// ViewPager的代码块(对ViewPager进行适配，初始化其Tab栏)
 		initViewPager();
-
 		// 初始化监听器
 		initListener();
 		popMenu = new PopMenu(MainActivity.this);
@@ -70,21 +84,21 @@ public class MainActivity extends FragmentActivity {
 				switch (v.getId()) {
 				case R.id.img_title_left:
 
-					// 点击“网易”标题，弹出右滑菜单b
-					if (menuRight.isMenuShowing()) {
+					// 点击“网易”标题，弹出左边的滑动菜单
+					if (mDrawer_layout.isDrawerOpen(Gravity.LEFT)) {
 
-						menuRight.showContent(true);
+						mDrawer_layout.closeDrawers();
 					} else {
-						menuRight.showMenu(true);
+						mDrawer_layout.openDrawer(Gravity.LEFT);
 					}
 
 					break;
 				case R.id.img_title_user:
-					// 点击“用户”图标，弹出左滑菜单
-					if (menuRight.isMenuShowing()) {
-						menuRight.showContent(true);
+					// 点击“用户”图标，弹出右滑动菜单
+					if (mDrawer_layout.isDrawerOpen(Gravity.RIGHT)) {
+						mDrawer_layout.closeDrawer(Gravity.RIGHT);
 					} else {
-						menuRight.showSecondaryMenu(true);
+						mDrawer_layout.openDrawer(Gravity.RIGHT);
 					}
 
 					break;
@@ -92,11 +106,38 @@ public class MainActivity extends FragmentActivity {
 
 					popMenu.showAsDropDown(v);
 					// 菜单项点击监听器
-					// popMenu.setOnItemClickListener(popMenuItemClickListener);
 					break;
 
-				default:
+				case R.id.tv_menu_right_login:
+					Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+					getApplication().startActivity(intent);
 					break;
+				case R.id.tv_menu_right__score:
+					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
+							.show();
+					break;
+				case R.id.tv_menu_right__message:
+					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
+							.show();
+					break;
+				case R.id.tv_menu_right__gohead:
+					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
+							.show();
+					break;
+				case R.id.tv_menu_right__gocover:
+					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
+							.show();
+					break;
+				case R.id.tv_menu_right__caipiao:
+					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
+							.show();
+					break;
+				case R.id.tv_menu_right__email:
+					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
+							.show();
+					break;
+
 				}
 
 			}
@@ -104,6 +145,14 @@ public class MainActivity extends FragmentActivity {
 		img_title_left.setOnClickListener(listener);
 		img_title_user.setOnClickListener(listener);
 		img_title_right.setOnClickListener(listener);
+		tv_menu_right_login.setOnClickListener(listener);
+		tv_menu_right_score.setOnClickListener(listener);
+		tv_menu_right_message.setOnClickListener(listener);
+		tv_menu_right_email.setOnClickListener(listener);
+		tv_menu_right_gocover.setOnClickListener(listener);
+		tv_menu_right_gohead.setOnClickListener(listener);
+		tv_menu_right_caipiao.setOnClickListener(listener);
+
 	}
 
 	// findViewById
@@ -113,6 +162,13 @@ public class MainActivity extends FragmentActivity {
 		img_title_left = (ImageView) findViewById(R.id.img_title_left);
 		img_title_right = (ImageView) findViewById(R.id.img_title_right);
 		img_title_user = (ImageView) findViewById(R.id.img_title_user);
+		tv_menu_right_login = (TextView) findViewById(R.id.tv_menu_right_login);
+		tv_menu_right_score = (TextView) findViewById(R.id.tv_menu_right__score);
+		tv_menu_right_message = (TextView) findViewById(R.id.tv_menu_right__message);
+		tv_menu_right_email = (TextView) findViewById(R.id.tv_menu_right__email);
+		tv_menu_right_gohead = (TextView) findViewById(R.id.tv_menu_right__gohead);
+		tv_menu_right_gocover = (TextView) findViewById(R.id.tv_menu_right__gocover);
+		tv_menu_right_caipiao = (TextView) findViewById(R.id.tv_menu_right__caipiao);
 	}
 
 	// ViewPager的代码块(对ViewPager进行适配，初始化其Tab栏)
@@ -130,72 +186,27 @@ public class MainActivity extends FragmentActivity {
 	/*
 	 * 初始化滑动菜单
 	 */
-	private void initSlidingMenuRight() {
+	private void initDrawerLayout() {
 
-		// 设置菜单的属性
-		menuRight = new SlidingMenu(this);
-		// 设置滑动菜单的范围，全屏or边缘
-		menuRight.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-		// 设置阴影图片
-		menuRight.setShadowDrawable(R.drawable.shadow_slidingmenuright);
-		menuRight
-				.setSecondaryShadowDrawable(R.drawable.shadow_slidingmenuright);
-		// 滑动时的渐变程度
-		// menuRight.setFadeDegree(0.5f);
-		// 使SlidingMenu附加在Activity上
-		menuRight.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-		// 设置right滑动菜单的宽度
-		menuRight.setBehindWidth(480);
-		// 设置left滑动菜单的宽度
-		menuRight.setRightBehindWidth(550);
-		// 设置左右都可以划出SlidingMenu菜单
-		menuRight.setMode(SlidingMenu.LEFT_RIGHT);
-		// 设置滑动菜单左侧布局文件
-		menuRight.setMenu(R.layout.menuframright);
-		// 设置滑动菜单右侧布局文件
-		menuRight.setSecondaryMenu(R.layout.menuframleft);
-
-		// 动态判断自动关闭或开启SlidingMenu
-		// menuRight.toggle();
-		// 显示SlidingMenu
-		// menuRight.showMenu();
-		// 显示内容
-		// menuRight.showContent();
-		// 监听SlidingMenu打开
-		// menuRight.setOnOpenListener(onOpenListener);
-		// 关于关闭menu有两个监听，简单的来说，对于menu close事件，一个是when,一个是after
-		// 监听SlidingMenu关闭时事件
-		// menuRight.OnClosedListener(OnClosedListener);
-		// 监听SlidingMenu关闭后事件
-		// menuRight.OnClosedListener(OnClosedListener);
-		// 用来封装SlidingMenu
-		listMenuData = new ArrayList<SlidingMenu>();
-		listMenuData.add(menuRight);
-
-		// 设置右侧菜单的布局文件
-		menuRight.setSecondaryMenu(R.layout.menuframleft);
-		// 用来封装SlidingMenu
-		listMenuData = new ArrayList<SlidingMenu>();
-		listMenuData.add(menuRight);
-		getSupportFragmentManager()
-				.beginTransaction()
-				.replace(R.id.menuframright,
-						SlidingMenuFragmentRight.newInstance(listMenuData))
-				.commit();
-
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.menuframleft, new SlidingMenuFragmentLeft())
-				.commit();
-		// 右侧菜单的阴影图片
-		// menuRight.setSecondaryShadowDrawable(R.drawable.shadowright);
+		mDrawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		mMenu_layout_left = (RelativeLayout) findViewById(R.id.menu_layout_left);
+		mMenu_layout_right = (LinearLayout) findViewById(R.id.menu_layout_right);
+		menu_listview_left = (ListView) findViewById(R.id.menu_listView_left);
+		menu_listview_right = (ListView) findViewById(R.id.menu_listView_right);
+		menuLeftAdapter = new MenuLeftAdapter(getApplicationContext());
+		menuRightAdapter = new MenuRightAdapter(getApplicationContext());
+		menu_listview_left.setAdapter(menuLeftAdapter.getAdapter(
+				menu_listview_left, mDrawer_layout));
+		menu_listview_right.setAdapter(menuRightAdapter
+				.getAdapter(menu_listview_right));
 
 	}
 
 	@Override
 	public void onBackPressed() {
 		// 点击返回键关闭滑动菜单
-		if (menuRight.isMenuShowing()) {
-			menuRight.showContent();
+		if (mDrawer_layout.isActivated()) {
+			mDrawer_layout.closeDrawers();
 		} else {
 			super.onBackPressed();
 		}

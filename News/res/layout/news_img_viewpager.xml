@@ -1,4 +1,4 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:daemon="http://schemas.android.com/com.jumige.mobile.news"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,11 +11,10 @@
         android:gravity="right"
         android:scaleType="fitXY"
         daemon:changeInterval="3000"
-        daemon:dotsBackground="#999999"
-        daemon:dotsBgAlpha="0.5"
+        daemon:dotsBackground="#ffffff"
         daemon:dotsBlurImage="@drawable/news_img_read"
         daemon:dotsFocusImage="@drawable/news_img_no_read"
         daemon:dotsSpacing="5dp"
         daemon:dotsViewHeight="30dp" />
 
-</LinearLayout>
+</RelativeLayout>

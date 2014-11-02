@@ -25,5 +25,6 @@
     <string name="login_login_qq">QQ账号登录</string>
     <string name="login_login_forget">忘记密码?</string>
     <string name="login_login_register">注册网易通行证</string>
+    <string name="setting_back">设置</string>
 
 </resources>

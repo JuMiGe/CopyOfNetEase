@@ -128,7 +128,8 @@ public class PopMenu {
 					break;
 				case 5:
 					//点击“设置”
-					
+					Intent intent2 = new Intent(context,SettingActivity.class);
+					context.startActivity(intent2);
 					break;
 				}
 

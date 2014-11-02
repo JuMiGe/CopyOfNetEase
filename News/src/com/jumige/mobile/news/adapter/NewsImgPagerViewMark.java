@@ -3,23 +3,23 @@ package com.jumige.mobile.news.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jumige.mobile.news.db.NewsHeadDataDb;
+import com.jumige.mobile.news.tools.ImageCacheTool;
 import com.jumige.mobile.news.view.fragment.SlippageViewPager;
 import com.jumige.mobile.news.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -28,7 +28,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
+public class NewsImgPagerViewMark extends RelativeLayout implements Runnable {
 
 	/*
 	 * 核心类，被封装的底部带指示物的ViewPager，基本思路是自定义一个类继承LinearLayout，
@@ -36,6 +36,7 @@ public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
 	 * (放置指示物)，并且，因为要定期轮转，还实现了Runnable接口，定义了以下的变量：
 	 */
 	// 新闻数据
+	private ImageCacheTool imageCacheTool;
 	private TextView newsImgTitle;
 	private ImageView newsImage;
 	// 要显示的ViewPager对象
@@ -67,6 +68,16 @@ public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
 
 	// 作为一个能够在xml布局文件中直接使用的View，必须重写拥有Context和
 	// AttributeSet参数的构造函数：
+//	public NewsImgPagerViewMark(Context context) {
+//		// TODO Auto-generated constructor stub
+//		super(context);
+//	}
+//
+//	public NewsImgPagerViewMark(Context context, AttributeSet attrs,
+//			int defStyle) {
+//		super(context, attrs, defStyle);
+//	}
+
 	public NewsImgPagerViewMark(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		TypedArray a = context.obtainStyledAttributes(attrs,
@@ -101,18 +112,16 @@ public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
 		}
 
 		initView();
-		newsImage = new ImageView(getContext());
-		newsImage.setImageResource(R.drawable.image1);
-		views.add(newsImage);
-		newsImage = new ImageView(getContext());
-		newsImage.setImageResource(R.drawable.image2);
-		views.add(newsImage);
-		newsImage = new ImageView(getContext());
-		newsImage.setImageResource(R.drawable.image1);
-		views.add(newsImage);
-		newsImage = new ImageView(getContext());
-		newsImage.setImageResource(R.drawable.image2);
-		views.add(newsImage);
+		// 获取头条新闻的第一张图片
+		imageCacheTool = new ImageCacheTool(getContext());
+		for (int i = 0; i < 4; i++) {
+			newsImage = new ImageView(getContext());
+			newsImage.setImageBitmap(imageCacheTool
+					.getBitmapFromCacheHead(String
+							.valueOf("newsheaddata/newshead_" + (i + 1)
+									+ "_img1.jpg")));
+			views.add(newsImage);
+		}
 		this.setViewPagerViews(views);
 	}
 
@@ -128,8 +137,8 @@ public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);
 
 		addView(viewPager, lp);
-//		newsImgTitle.setText("图片新闻的标题");
-//		addView(newsImgTitle, lp);
+		// newsImgTitle.setText("图片新闻的标题");
+		// addView(newsImgTitle, lp);
 		if (dotsBackground != null) {
 			dotsBackground.setAlpha((int) (dotsBgAlpha * 255));
 			viewDots.setBackground(dotsBackground);
@@ -148,7 +157,6 @@ public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
 	public void setViewPagerViews(List<View> views) {
 		this.views = views;
 		addDots(views.size());
-		System.out.println(scaleType);
 		viewPager.setAdapter(new NewsImgPagerViewAdapter(views, scaleType));
 
 		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
@@ -257,7 +265,7 @@ public class NewsImgPagerViewMark extends LinearLayout implements Runnable {
 		for (int i = 0; i < size; i++) {
 			doctsImageView = new ImageView(getContext());
 			// 设置小圆点imageview的参数
-			doctsImageView.setLayoutParams(new LayoutParams(20, 20));// 创建一个宽高均为20的布局
+			doctsImageView.setLayoutParams(new LayoutParams(10, 10));// 创建一个宽高均为20的布局
 			// RelativeLayout.LayoutParams params = new
 			// RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, 20);
 

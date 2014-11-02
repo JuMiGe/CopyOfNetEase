@@ -2,7 +2,9 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import junit.framework.Test;
 
@@ -12,6 +14,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleLis
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.jumige.mobile.news.adapter.NewsImgPagerViewMark;
 import com.jumige.mobile.news.db.NewsListDataDb;
+import com.jumige.mobile.news.tools.ImageCacheTool;
 import com.jumige.mobile.news.R;
 
 import android.app.LauncherActivity.ListItem;
@@ -37,7 +40,6 @@ public class ViewPagerFragment extends ListFragment {
 	// 定义一个下拉刷新的ListView
 	private PullToRefreshListView pullListRefresh;
 	private View view;
-	private View view2;
 
 	/*
 	 * 模拟新闻列表的数据
@@ -47,10 +49,10 @@ public class ViewPagerFragment extends ListFragment {
 	private SimpleAdapter simpleAdapter;
 	private ArrayList<HashMap<String, Object>> dataList = new ArrayList<HashMap<String, Object>>();
 	private HashMap<String, Object> dataMap;
-	private ArrayList<Bitmap> newsListImg1;
 	private ArrayList<String> newsListTitle;
 	private ArrayList<String> newsListDigest;
 	private String commentNum[];
+	private ImageCacheTool imageCacheTool;
 
 	public static ViewPagerFragment newInstance() {
 		ViewPagerFragment fragment = new ViewPagerFragment();
@@ -60,28 +62,26 @@ public class ViewPagerFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		// TODO Auto-generated method stub
 		nldd = new NewsListDataDb(getActivity());
-		newsListImg1 = nldd.getNewsListImg(1);
 		newsListTitle = nldd.getNewsListTitle();
 		newsListDigest = nldd.getNewsListDigest();
-		commentNum = new String[] { "143跟帖", "35041跟帖", "27878跟帖", "1023跟帖", "703跟帖",
-				"11503跟帖", "8838跟帖", "14452跟帖", "6231跟帖", "3250跟帖" };
+		commentNum = new String[] { "143跟帖", "35041跟帖", "27878跟帖", "1023跟帖",
+				"703跟帖", "11503跟帖", "8838跟帖", "14452跟帖", "6231跟帖", "3250跟帖" };
 		/*
 		 * 生成数据源
 		 */
+		imageCacheTool = new ImageCacheTool(getActivity());
 		for (int i = 0; i < newsListTitle.size(); i++) {
+
 			dataMap = new HashMap<String, Object>();
-			Bitmap bitmap = newsListImg1.get(i);
-			System.out.println("1"+bitmap);
-			dataMap.put("img", bitmap);
-			
+			dataMap.put("img", imageCacheTool.getBitmapFromCacheList(String
+					.valueOf("newslistdata/newslist_"+(i + 1)+"_img1.jpg")));
 			dataMap.put("title", newsListTitle.get(i));
 			dataMap.put("digest", newsListDigest.get(i));
 			dataMap.put("comm", commentNum[i]);
 			dataList.add(dataMap);
 		}
-
 		simpleAdapter = new SimpleAdapter(getActivity(), dataList,
 				R.layout.item_list_newsviewpager, new String[] { "img",
 						"title", "digest", "comm" }, new int[] {
@@ -101,10 +101,7 @@ public class ViewPagerFragment extends ListFragment {
 					return false;
 			}
 		});
-
 		this.setListAdapter(simpleAdapter);
-		
-
 	}
 
 	@Override
@@ -112,7 +109,6 @@ public class ViewPagerFragment extends ListFragment {
 			Bundle savedInstanceState) {
 		// 创建一个View获得ListView的布局ID。Fragment是不能findViewById的
 		view = inflater.inflate(R.layout.list_news_viewpager, container, false);
-		view2 = inflater.inflate(R.layout.news_img_viewpager, container, false);
 		// ID声明
 		pullListRefresh = (PullToRefreshListView) view
 				.findViewById(R.id.pull_refresh_list);
@@ -120,10 +116,6 @@ public class ViewPagerFragment extends ListFragment {
 		// 大图滑动区域，添加了一个ViewPager
 		pullListRefresh.getRefreshableView().addHeaderView(
 				inflater.inflate(R.layout.news_img_viewpager, null));
-		// NewsImgPagerViewMark pager = (NewsImgPagerViewMark) view2
-		// .findViewById(R.id.my_view_pager);
-		//
-		// pager.setViewPagerViews(views);
 		// 给个监听，当应该被刷新的时候
 		pullListRefresh.setOnRefreshListener(new OnRefreshListener<ListView>() {
 			@Override
@@ -160,11 +152,8 @@ public class ViewPagerFragment extends ListFragment {
 
 		@Override
 		protected String[] doInBackground(Void... params) {
-			// Simulates a background job.
-			try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-			}
+			//				Thread.sleep(2000);
+			dataList.clear();
 			return new String[] { "a" };
 		}
 

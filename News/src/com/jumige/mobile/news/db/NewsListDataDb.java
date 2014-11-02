@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import android.content.Context;
@@ -14,17 +15,21 @@ import android.media.Image;
 /*
  * 获得新闻列表的数据
  */
-public class NewsListDataDb {
-	private Context mcontext;
+public class NewsListDataDb implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Context mContext;
 	private ArrayList<String> newsListTitle;
 	private ArrayList<String> newsListContext;
-	private ArrayList<Bitmap> newsListImg;
 	private ArrayList<String> newsListBrieft;
 	private InputStream fis;
 	private StringBuffer sb;
-	private Bitmap bitmap;
 	private String line;
 	private BufferedReader bufferedReader;
+	private BitmapFactory.Options options;
+	private BitmapFactory.Options options2;
 	private String[] newsPath = new String[] { "newslistdata/newslist_1_",
 			"newslistdata/newslist_2_", "newslistdata/newslist_3_",
 			"newslistdata/newslist_4_", "newslistdata/newslist_5_",
@@ -33,7 +38,9 @@ public class NewsListDataDb {
 			"newslistdata/newslist_10_" };
 
 	public NewsListDataDb(Context context) {
-		mcontext = context;
+		mContext = context;
+		options = new BitmapFactory.Options();
+		options2 = new BitmapFactory.Options();
 	}
 
 	// 获得新闻的标题
@@ -58,22 +65,24 @@ public class NewsListDataDb {
 	}
 
 	// 获得新闻的图片
-	public ArrayList<Bitmap> getNewsListImg(int index) {
-		newsListImg = new ArrayList<Bitmap>();
-		if (index == 1) {
-			for (int i = 0; i < newsPath.length; i++) {
-
-				newsListImg.add(getImg(newsPath[i] + "img1.jpg"));
-			}
-		} else {
-			for (int i = 0; i < newsPath.length; i++) {
-
-				newsListImg.add(getImg(newsPath[i] + "img2.jpg"));
-			}
-		}
-		return newsListImg;
-
-	}
+	/*
+	 * index 0；获取第一张图片 index 1；获取第二张图片
+	 */
+	// public ArrayList<Bitmap> getNewsListImg(int index) {
+	// newsListImg = new ArrayList<Bitmap>();
+	// if (index == 1) {
+	// for (int i = 0; i < newsPath.length; i++) {
+	//
+	// newsListImg.add(getImg(newsPath[i] + "img1.jpg"));
+	// }
+	// } else {
+	// for (int i = 0; i < newsPath.length; i++) {
+	// newsListImg.add(getImg(newsPath[i] + "img2.jpg"));
+	// }
+	// }
+	// return newsListImg;
+	//
+	// }
 
 	// 获得新闻的简述
 	public ArrayList<String> getNewsListDigest() {
@@ -88,18 +97,41 @@ public class NewsListDataDb {
 	}
 
 	// 得到新闻图片
-	private Bitmap getImg(String path) {
-		try {
-			fis = mcontext.getAssets().open(path);
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			bitmap = BitmapFactory.decodeStream(fis, null, options);
 
+	public Bitmap getNewsImg(String path) {
+		try {
+			fis = mContext.getAssets().open(path);
+			options.inJustDecodeBounds = true;
+			BitmapFactory.decodeStream(fis, null, options);
+			final int REQUIRED_SIZE = 55;
+			int width_tmp = options.outWidth, height_tmp = options.outHeight;
+			int scale = 1;
+			while (true) {
+				if (width_tmp / 2 < REQUIRED_SIZE
+						|| height_tmp / 2 < REQUIRED_SIZE) {
+					break;
+				}
+				width_tmp /= 2;
+				height_tmp /= 2;
+				scale *= 2;
+			}
+
+			// decode with inSampleSize
+			
+			options2.inSampleSize = scale;
+			return BitmapFactory.decodeStream(fis, null, options2);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				fis.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-
-		return bitmap;
+		return null;
 
 	}
 
@@ -109,12 +141,19 @@ public class NewsListDataDb {
 		line = null;
 		bufferedReader = null;
 		try {
-			fis = mcontext.getAssets().open(path);
+			fis = mContext.getAssets().open(path);
 			bufferedReader = new BufferedReader(new InputStreamReader(fis));
 			line = bufferedReader.readLine();
 			sb.append(line);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				fis.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return sb;
 
@@ -122,11 +161,12 @@ public class NewsListDataDb {
 
 	// 得到内容
 	private StringBuffer getContext(int j, String path) {
+		// j是用来判断得到内容和得到概述的
 		sb = new StringBuffer();
 		line = null;
 		bufferedReader = null;
 		try {
-			fis = mcontext.getAssets().open(path);
+			fis = mContext.getAssets().open(path);
 			bufferedReader = new BufferedReader(new InputStreamReader(fis));
 			if (j == 0) {
 				while ((line = bufferedReader.readLine()) != null) {
@@ -145,6 +185,13 @@ public class NewsListDataDb {
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				fis.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return sb;
 
