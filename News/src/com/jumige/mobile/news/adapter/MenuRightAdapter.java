@@ -2,25 +2,21 @@ package com.jumige.mobile.news.adapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.zip.Inflater;
 
 import com.jumige.mobile.news.R;
-import com.jumige.mobile.news.activity.LoginActivity;
 
 import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
 public class MenuRightAdapter {
-
+	/*
+	 * 右滑列表的数据适配
+	 */
 	private Context mContext;
 	private ListView menu_listView_right;
 	private OnItemClickListener listener;

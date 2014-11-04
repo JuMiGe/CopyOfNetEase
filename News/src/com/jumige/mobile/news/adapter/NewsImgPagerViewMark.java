@@ -3,7 +3,6 @@ package com.jumige.mobile.news.adapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.jumige.mobile.news.db.NewsHeadDataDb;
 import com.jumige.mobile.news.tools.ImageCacheTool;
 import com.jumige.mobile.news.view.fragment.SlippageViewPager;
 import com.jumige.mobile.news.R;
@@ -11,7 +10,6 @@ import com.jumige.mobile.news.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
@@ -24,18 +22,20 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ImageView.ScaleType;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class NewsImgPagerViewMark extends RelativeLayout implements Runnable {
 
-	/*
+	/*头条新闻显示区域的自定义的ViewPager
+	 * 
+	 * 
 	 * 核心类，被封装的底部带指示物的ViewPager，基本思路是自定义一个类继承LinearLayout，
 	 * 在里面加入两个子视图ViewPager和LinearLayout
 	 * (放置指示物)，并且，因为要定期轮转，还实现了Runnable接口，定义了以下的变量：
 	 */
 	// 新闻数据
+	private Context mContext;
 	private ImageCacheTool imageCacheTool;
 	private TextView newsImgTitle;
 	private ImageView newsImage;
@@ -68,18 +68,10 @@ public class NewsImgPagerViewMark extends RelativeLayout implements Runnable {
 
 	// 作为一个能够在xml布局文件中直接使用的View，必须重写拥有Context和
 	// AttributeSet参数的构造函数：
-//	public NewsImgPagerViewMark(Context context) {
-//		// TODO Auto-generated constructor stub
-//		super(context);
-//	}
-//
-//	public NewsImgPagerViewMark(Context context, AttributeSet attrs,
-//			int defStyle) {
-//		super(context, attrs, defStyle);
-//	}
 
 	public NewsImgPagerViewMark(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		mContext = context;
 		TypedArray a = context.obtainStyledAttributes(attrs,
 				R.styleable.NewsImgPagerViewMark, 0, 0);
 
@@ -113,7 +105,7 @@ public class NewsImgPagerViewMark extends RelativeLayout implements Runnable {
 
 		initView();
 		// 获取头条新闻的第一张图片
-		imageCacheTool = new ImageCacheTool(getContext());
+		imageCacheTool = new ImageCacheTool(getContext(),350);
 		for (int i = 0; i < 4; i++) {
 			newsImage = new ImageView(getContext());
 			newsImage.setImageBitmap(imageCacheTool
@@ -157,7 +149,8 @@ public class NewsImgPagerViewMark extends RelativeLayout implements Runnable {
 	public void setViewPagerViews(List<View> views) {
 		this.views = views;
 		addDots(views.size());
-		viewPager.setAdapter(new NewsImgPagerViewAdapter(views, scaleType));
+		viewPager.setAdapter(new NewsImgPagerViewAdapter(mContext, views,
+				scaleType));
 
 		viewPager.setOnPageChangeListener(new OnPageChangeListener() {
 			@Override

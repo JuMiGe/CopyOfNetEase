@@ -21,21 +21,15 @@ public class NewsListDataDb implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Context mContext;
-	private ArrayList<String> newsListTitle;
-	private ArrayList<String> newsListContext;
-	private ArrayList<String> newsListBrieft;
 	private InputStream fis;
 	private StringBuffer sb;
 	private String line;
 	private BufferedReader bufferedReader;
 	private BitmapFactory.Options options;
 	private BitmapFactory.Options options2;
-	private String[] newsPath = new String[] { "newslistdata/newslist_1_",
-			"newslistdata/newslist_2_", "newslistdata/newslist_3_",
-			"newslistdata/newslist_4_", "newslistdata/newslist_5_",
-			"newslistdata/newslist_6_", "newslistdata/newslist_7_",
-			"newslistdata/newslist_8_", "newslistdata/newslist_9_",
-			"newslistdata/newslist_10_" };
+	public String[] commentNum = new String[] { "143跟帖", "35041跟帖", "27878跟帖",
+			"1023跟帖", "703跟帖", "11503跟帖", "8838跟帖", "14452跟帖", "6231跟帖",
+			"3250跟帖" };
 
 	public NewsListDataDb(Context context) {
 		mContext = context;
@@ -43,67 +37,14 @@ public class NewsListDataDb implements Serializable {
 		options2 = new BitmapFactory.Options();
 	}
 
-	// 获得新闻的标题
-	public ArrayList<String> getNewsListTitle() {
-		newsListTitle = new ArrayList<String>();
-		for (int i = 0; i < newsPath.length; i++) {
-			getTitle(newsPath[i] + "context");
-			newsListTitle.add(sb.toString());
-		}
-		return newsListTitle;
-	}
-
-	// 获得新闻的内容
-	public ArrayList<String> getNewsListContext() {
-		newsListContext = new ArrayList<String>();
-		for (int i = 0; i < newsPath.length; i++) {
-			getContext(1, newsPath[i] + "context");
-			newsListContext.add(sb.toString());
-		}
-
-		return newsListContext;
-	}
-
-	// 获得新闻的图片
-	/*
-	 * index 0；获取第一张图片 index 1；获取第二张图片
-	 */
-	// public ArrayList<Bitmap> getNewsListImg(int index) {
-	// newsListImg = new ArrayList<Bitmap>();
-	// if (index == 1) {
-	// for (int i = 0; i < newsPath.length; i++) {
-	//
-	// newsListImg.add(getImg(newsPath[i] + "img1.jpg"));
-	// }
-	// } else {
-	// for (int i = 0; i < newsPath.length; i++) {
-	// newsListImg.add(getImg(newsPath[i] + "img2.jpg"));
-	// }
-	// }
-	// return newsListImg;
-	//
-	// }
-
-	// 获得新闻的简述
-	public ArrayList<String> getNewsListDigest() {
-		newsListBrieft = new ArrayList<String>();
-		for (int i = 0; i < newsPath.length; i++) {
-			getContext(0, newsPath[i] + "brieft");
-			newsListBrieft.add(sb.toString());
-		}
-
-		return newsListBrieft;
-
-	}
-
 	// 得到新闻图片
 
-	public Bitmap getNewsImg(String path) {
+	public Bitmap getNewsImg(String path,int size) {
 		try {
 			fis = mContext.getAssets().open(path);
 			options.inJustDecodeBounds = true;
 			BitmapFactory.decodeStream(fis, null, options);
-			final int REQUIRED_SIZE = 55;
+			int REQUIRED_SIZE = size;
 			int width_tmp = options.outWidth, height_tmp = options.outHeight;
 			int scale = 1;
 			while (true) {
@@ -117,7 +58,7 @@ public class NewsListDataDb implements Serializable {
 			}
 
 			// decode with inSampleSize
-			
+
 			options2.inSampleSize = scale;
 			return BitmapFactory.decodeStream(fis, null, options2);
 		} catch (IOException e) {
@@ -136,7 +77,7 @@ public class NewsListDataDb implements Serializable {
 	}
 
 	// 得到标题
-	private StringBuffer getTitle(String path) {
+	public String getNewsTitle(String path) {
 		sb = new StringBuffer();
 		line = null;
 		bufferedReader = null;
@@ -155,12 +96,15 @@ public class NewsListDataDb implements Serializable {
 				e.printStackTrace();
 			}
 		}
-		return sb;
+		return sb.toString();
 
 	}
 
 	// 得到内容
-	private StringBuffer getContext(int j, String path) {
+	/*
+	 * j=0;得到概述。j=1;得到内容
+	 */
+	public String getNewsContext(int j, String path) {
 		// j是用来判断得到内容和得到概述的
 		sb = new StringBuffer();
 		line = null;
@@ -193,7 +137,7 @@ public class NewsListDataDb implements Serializable {
 				e.printStackTrace();
 			}
 		}
-		return sb;
+		return sb.toString();
 
 	}
 

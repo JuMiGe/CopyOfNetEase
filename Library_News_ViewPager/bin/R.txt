@@ -83,11 +83,12 @@ int integer default_title_indicator_footer_indicator_style 0x7f060001
 int integer default_title_indicator_line_position 0x7f060002
 int integer default_underline_indicator_fade_delay 0x7f060003
 int integer default_underline_indicator_fade_length 0x7f060004
-int style TextAppearance_TabPageIndicator 0x7f080003
-int style Theme_PageIndicatorDefaults 0x7f080000
-int style Widget 0x7f080001
-int style Widget_IconPageIndicator 0x7f080004
-int style Widget_TabPageIndicator 0x7f080002
+int style CustomWindowTitleBackground 0x7f080000
+int style TextAppearance_TabPageIndicator 0x7f080004
+int style Theme_PageIndicatorDefaults 0x7f080001
+int style Widget 0x7f080002
+int style Widget_IconPageIndicator 0x7f080005
+int style Widget_TabPageIndicator 0x7f080003
 int[] styleable CirclePageIndicator { 0x010100c4, 0x010100d4, 0x7f010006, 0x7f010008, 0x7f01000a, 0x7f01000b, 0x7f01000c, 0x7f01000d, 0x7f01000e }
 int styleable CirclePageIndicator_android_background 1
 int styleable CirclePageIndicator_android_orientation 0

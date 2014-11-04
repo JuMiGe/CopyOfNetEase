@@ -17,7 +17,7 @@ import com.jumige.mobile.news.R;
 
 public class MenuLeftAdapter {
 	/*
-	 * 右滑列表的图片数据
+	 * 左滑列表的图片数据适配
 	 */
 	public SimpleAdapter simpleAdapter;
 	private Context mContext;

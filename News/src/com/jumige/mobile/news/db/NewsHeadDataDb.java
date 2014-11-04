@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+/*
+ * 从资源文件取头条新闻数据的类
+ */
 public class NewsHeadDataDb {
 	private Context mContext;
 	private StringBuffer sb;
@@ -18,63 +20,16 @@ public class NewsHeadDataDb {
 	private InputStream fis;
 	private BitmapFactory.Options options;
 	private BitmapFactory.Options options2;
-	private ArrayList<String> newsHeadTitle;
-	private ArrayList<String> newsHeadContext;
-	private ArrayList<Bitmap> newsHeadImg;
-	private String[] newsPath = new String[] { "newsheaddata/newshead_1_",
-			"newsheaddata/newshead_2_", "newsheaddata/newshead_3_",
-			"newsheaddata/newshead_4_" };
 
 	public NewsHeadDataDb(Context context) {
-		
+
 		mContext = context;
 		options2 = new BitmapFactory.Options();
 		options = new BitmapFactory.Options();
 	}
 
-	// 获得新闻的标题
-	public ArrayList<String> getNewsHeadTitle() {
-		newsHeadTitle = new ArrayList<String>();
-		for (int i = 0; i < newsPath.length; i++) {
-			getTitle(newsPath[i] + "context");
-			newsHeadTitle.add(sb.toString());
-		}
-		return newsHeadTitle;
-	}
-
-	// 获得新闻的内容
-	public ArrayList<String> getNewsHeadContext() {
-		newsHeadContext = new ArrayList<String>();
-		for (int i = 0; i < newsPath.length; i++) {
-			getContext(newsPath[i] + "context");
-			newsHeadContext.add(sb.toString());
-		}
-
-		return newsHeadContext;
-	}
-
-	/*
-	 * 获取头条新闻图片； index = 0;获取第一张图片 index = 1;获取所有图片 (有待完善)
-	 */
-//	public ArrayList<Bitmap> getNewsHeadImg(int index) {
-//		newsHeadImg = new ArrayList<Bitmap>();
-//		if (index == 0) {
-//			for (int i = 0; i < newsPath.length; i++) {
-//
-//				newsHeadImg.add(getImg(newsPath[i] + "img1.jpg"));
-//			}
-//		} else {
-//			for (int i = 0; i < newsPath.length; i++) {
-//
-//				newsHeadImg.add(getImg(newsPath[i] + "img2.jpg"));
-//			}
-//		}
-//		return newsHeadImg;
-
-//	}
-
 	// 得到标题
-	private StringBuffer getTitle(String path) {
+	public String getNewsTitle(String path) {
 		sb = new StringBuffer();
 		line = null;
 		bufferedReader = null;
@@ -93,13 +48,13 @@ public class NewsHeadDataDb {
 				e.printStackTrace();
 			}
 		}
-		return sb;
+		return sb.toString();
 
 	}
 
 	// 得到内容
-	private StringBuffer getContext(String path) {
-		
+	public String getNewsContext(String path) {
+
 		sb = new StringBuffer();
 		line = null;
 		bufferedReader = null;
@@ -121,17 +76,17 @@ public class NewsHeadDataDb {
 				e.printStackTrace();
 			}
 		}
-		return sb;
+		return sb.toString();
 
 	}
 
 	// 得到新闻图片
-	public Bitmap getNewsImg(String path) {
+	public Bitmap getNewsImg(String path, int size) {
 		try {
 			fis = mContext.getAssets().open(path);
 			options.inJustDecodeBounds = true;
 			BitmapFactory.decodeStream(fis, null, options);
-			final int REQUIRED_SIZE = 350;
+			int REQUIRED_SIZE = size;
 			int width_tmp = options.outWidth, height_tmp = options.outHeight;
 			int scale = 1;
 			while (true) {

@@ -7,14 +7,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
-import android.location.GpsStatus.Listener;
-import android.media.Image;
-import android.sax.TextElementListener;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
@@ -52,16 +47,11 @@ public class PopMenu {
 		listView = (ListView) view.findViewById(R.id.listview_more);
 		adapter = new PopAdapter();
 		listView.setAdapter(adapter);
-		// listView.setFocusableInTouchMode(true);
-		// listView.setFocusable(true);
 		// 初始化、设置ListView的点击事件
 		initListener();
 		listView.setOnItemClickListener(listener);
 
 		popupWindow = new PopupWindow(view, 350, 550);
-		// popupWindow = new PopupWindow(view, context.getResources()
-		// .getDimensionPixelSize(R.dimen.popmenu_width),
-		// LayoutParams.WRAP_CONTENT);
 
 		// 这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());

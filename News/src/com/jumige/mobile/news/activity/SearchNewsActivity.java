@@ -10,7 +10,9 @@ import android.view.Window;
 import android.widget.TextView;
 
 public class SearchNewsActivity extends Activity {
-
+/*
+ * 搜索页面，只是个布局。
+ */
 	private TextView tv_back;
 
 	@Override

@@ -7,7 +7,10 @@ import com.jumige.mobile.news.view.fragment.ViewPagerFragment;
 import com.jumige.mobile.news.R;
 import com.viewpagerindicator.TabPageIndicator;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -15,6 +18,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,8 +35,8 @@ public class MainActivity extends FragmentActivity {
 	private MenuLeftAdapter menuLeftAdapter;
 	private MenuRightAdapter menuRightAdapter;
 	private DrawerLayout mDrawer_layout;// DrawerLayout容器
-	private RelativeLayout mMenu_layout_left;// 左边抽屉
-	private LinearLayout mMenu_layout_right;// 右边抽屉
+	private RelativeLayout mMenu_layout_left;// 左边Menu抽屉
+	private LinearLayout mMenu_layout_right;// 右边Menu抽屉
 	private ListView menu_listview_left;
 	private ListView menu_listview_right;
 	private NewsTypeDataDb newsTypeDataDb;
@@ -47,7 +51,7 @@ public class MainActivity extends FragmentActivity {
 	private TextView tv_menu_right_gohead;
 	private TextView tv_menu_right_gocover;
 	private TextView tv_menu_right_caipiao;
-
+	private ActionBar actionBar;
 	// 下拉菜单
 	private PopMenu popMenu;
 
@@ -59,6 +63,7 @@ public class MainActivity extends FragmentActivity {
 		// 设置标题栏
 		getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE,
 				R.layout.title_main);
+
 		// findViewById
 		initFindViewById();
 		// 滑动菜单
@@ -71,8 +76,25 @@ public class MainActivity extends FragmentActivity {
 		// 初始化监听器
 		initListener();
 		popMenu = new PopMenu(MainActivity.this);
-
+		IntentFilter filter = new IntentFilter(LoginActivity.action); 
+		//等待登录成功返回的消息
+		registerReceiver(broadcastReceiver, filter);
+		
 	}
+	private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			// 接收登录成功传回来的信息
+			tv_menu_right_login.setText(intent.getExtras()
+					.getString("data"));
+
+		}
+	};
+
+	protected void onDestroy() {
+		unregisterReceiver(broadcastReceiver);
+	};
 
 	// 初始化监听器
 	private void initListener() {
@@ -109,33 +131,40 @@ public class MainActivity extends FragmentActivity {
 					break;
 
 				case R.id.tv_menu_right_login:
-					Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-					intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-					getApplication().startActivity(intent);
+					if (tv_menu_right_login.getText().toString().equals("立即登录")) {
+						Intent intent = new Intent(MainActivity.this,
+								LoginActivity.class);
+						intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+						getApplication().startActivity(intent);
+					} else {
+						Toast.makeText(getApplicationContext(), "该功能尚未实现",
+								Toast.LENGTH_LONG).show();
+					}
+
 					break;
 				case R.id.tv_menu_right__score:
-					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
-							.show();
+					Toast.makeText(getApplicationContext(), "该功能尚未实现",
+							Toast.LENGTH_LONG).show();
 					break;
 				case R.id.tv_menu_right__message:
-					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
-							.show();
+					Toast.makeText(getApplicationContext(), "该功能尚未实现",
+							Toast.LENGTH_LONG).show();
 					break;
 				case R.id.tv_menu_right__gohead:
-					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
-							.show();
+					Toast.makeText(getApplicationContext(), "该功能尚未实现",
+							Toast.LENGTH_LONG).show();
 					break;
 				case R.id.tv_menu_right__gocover:
-					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
-							.show();
+					Toast.makeText(getApplicationContext(), "该功能尚未实现",
+							Toast.LENGTH_LONG).show();
 					break;
 				case R.id.tv_menu_right__caipiao:
-					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
-							.show();
+					Toast.makeText(getApplicationContext(), "该功能尚未实现",
+							Toast.LENGTH_LONG).show();
 					break;
 				case R.id.tv_menu_right__email:
-					Toast.makeText(getApplicationContext(), "该功能尚未实现", Toast.LENGTH_LONG)
-							.show();
+					Toast.makeText(getApplicationContext(), "该功能尚未实现",
+							Toast.LENGTH_LONG).show();
 					break;
 
 				}
@@ -171,18 +200,6 @@ public class MainActivity extends FragmentActivity {
 		tv_menu_right_caipiao = (TextView) findViewById(R.id.tv_menu_right__caipiao);
 	}
 
-	// ViewPager的代码块(对ViewPager进行适配，初始化其Tab栏)
-	private void initViewPager() {
-		FragmentPagerAdapter adapter = new GoogleMusicAdapter(
-				getSupportFragmentManager());
-
-		ViewPager pager = (ViewPager) findViewById(R.id.pager);
-		pager.setAdapter(adapter);
-
-		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
-		indicator.setViewPager(pager);
-	}
-
 	/*
 	 * 初始化滑动菜单
 	 */
@@ -213,8 +230,20 @@ public class MainActivity extends FragmentActivity {
 
 	}
 
+	// ViewPager的代码块(对ViewPager进行适配，初始化其Tab栏)
+	private void initViewPager() {
+		FragmentPagerAdapter adapter = new GoogleMusicAdapter(
+				getSupportFragmentManager());
+
+		ViewPager pager = (ViewPager) findViewById(R.id.pager);
+		pager.setAdapter(adapter);
+
+		TabPageIndicator indicator = (TabPageIndicator) findViewById(R.id.indicator);
+		indicator.setViewPager(pager);
+	}
+
 	/*
-	 * ViewPager复写的方法//有待研究
+	 * ViewPager复写的方法
 	 */
 	class GoogleMusicAdapter extends FragmentPagerAdapter {
 		public GoogleMusicAdapter(FragmentManager fm) {

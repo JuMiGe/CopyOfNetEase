@@ -12,6 +12,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnLastItemVisibleListener;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
+import com.jumige.mobile.news.activity.NewsCotentActivity;
 import com.jumige.mobile.news.adapter.NewsImgPagerViewMark;
 import com.jumige.mobile.news.db.NewsListDataDb;
 import com.jumige.mobile.news.tools.ImageCacheTool;
@@ -19,6 +20,7 @@ import com.jumige.mobile.news.R;
 
 import android.app.LauncherActivity.ListItem;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -49,8 +51,6 @@ public class ViewPagerFragment extends ListFragment {
 	private SimpleAdapter simpleAdapter;
 	private ArrayList<HashMap<String, Object>> dataList = new ArrayList<HashMap<String, Object>>();
 	private HashMap<String, Object> dataMap;
-	private ArrayList<String> newsListTitle;
-	private ArrayList<String> newsListDigest;
 	private String commentNum[];
 	private ImageCacheTool imageCacheTool;
 
@@ -64,21 +64,24 @@ public class ViewPagerFragment extends ListFragment {
 		super.onCreate(savedInstanceState);
 		// TODO Auto-generated method stub
 		nldd = new NewsListDataDb(getActivity());
-		newsListTitle = nldd.getNewsListTitle();
-		newsListDigest = nldd.getNewsListDigest();
-		commentNum = new String[] { "143跟帖", "35041跟帖", "27878跟帖", "1023跟帖",
-				"703跟帖", "11503跟帖", "8838跟帖", "14452跟帖", "6231跟帖", "3250跟帖" };
+		commentNum = nldd.commentNum;
 		/*
 		 * 生成数据源
 		 */
-		imageCacheTool = new ImageCacheTool(getActivity());
-		for (int i = 0; i < newsListTitle.size(); i++) {
+		imageCacheTool = new ImageCacheTool(getActivity(), 55);
+		for (int i = 0; i < commentNum.length; i++) {
 
 			dataMap = new HashMap<String, Object>();
 			dataMap.put("img", imageCacheTool.getBitmapFromCacheList(String
-					.valueOf("newslistdata/newslist_"+(i + 1)+"_img1.jpg")));
-			dataMap.put("title", newsListTitle.get(i));
-			dataMap.put("digest", newsListDigest.get(i));
+					.valueOf("newslistdata/newslist_" + (i + 1) + "_img1.jpg")));
+			dataMap.put(
+					"title",
+					nldd.getNewsTitle("newslistdata/newslist_" + (i + 1)
+							+ "_context"));
+			dataMap.put(
+					"digest",
+					nldd.getNewsContext(0, "newslistdata/newslist_" + (i + 1)
+							+ "_brieft"));
 			dataMap.put("comm", commentNum[i]);
 			dataList.add(dataMap);
 		}
@@ -127,13 +130,12 @@ public class ViewPagerFragment extends ListFragment {
 								| DateUtils.FORMAT_ABBREV_ALL);
 				// 显示最后更新的时间
 				refreshView.getLoadingLayoutProxy().setLastUpdatedLabel(label);
-
 				// 模拟下载任务 //任务完成后更新数据
-				new GetDataTask();
-				onPostExecute();
+				new GetDataTask().execute();
 			}
 		});
 		// 下拉到最后的监听
+		pullListRefresh.onRefreshComplete();
 		pullListRefresh
 				.setOnLastItemVisibleListener(new OnLastItemVisibleListener() {
 
@@ -151,25 +153,28 @@ public class ViewPagerFragment extends ListFragment {
 	private class GetDataTask extends AsyncTask<Void, Void, String[]> {
 
 		@Override
+		protected void onPostExecute(String[] result) {
+			pullListRefresh.onRefreshComplete();
+
+			super.onPostExecute(result);
+		}
+
+		@Override
 		protected String[] doInBackground(Void... params) {
-			//				Thread.sleep(2000);
-			dataList.clear();
-			return new String[] { "a" };
+			// TODO Auto-generated method stub
+			return null;
 		}
 
 	}
-
 	/*
-	 * 重写的ListActivity的更新数据的方法。暂时无法完善
 	 */
-	protected void onPostExecute() {
-		// mListItems.addFirst("Added after refresh...");
-		// mAdapter.notifyDataSetChanged();
-
-		// Call onRefreshComplete when the list has been refreshed.
-		pullListRefresh.onRefreshComplete();
-
-		// super.onPostExecute(result);
+	@Override
+	public void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		Intent intent = new Intent(getActivity(), NewsCotentActivity.class);
+		intent.putExtra("position", position);
+		getActivity().startActivity(intent);
 	}
 
 }

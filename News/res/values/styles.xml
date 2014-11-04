@@ -2,13 +2,13 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="Theme.AppCompat.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
@@ -18,20 +18,38 @@
     </style>
 
     <style name="CustomWindowTitleBackground">
-
-  
-　　                        <item name="android:background">#eb413d</item>
+        <item name="android:background">#eb413d</item>
     </style>
 
     <style name="title" parent="android:Theme">
+        <item name="android:windowTitleSize">55dp</item>
+        <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
 
-   
-　　                      <item name="android:windowTitleSize">55dp</item>
-
-   
-　　                      <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground</item>
-
-   
 　　</style>
+
+    <style name="cotenttitle" parent="android:Theme">
+
+　　                       <item name="android:windowTitleSize">55dp</item>
+
+　　                       <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground1</item>
+
+　　</style>
+
+    <style name="CustomWindowTitleBackground1">
+
+　　             <item name="android:background">#fafafa</item>
+    </style>
+
+    <style name="headcotenttitle" parent="android:Theme">
+
+　　                       <item name="android:windowTitleSize">55dp</item>
+
+　　                       <item name="android:windowTitleBackgroundStyle">@style/CustomWindowTitleBackground2</item>
+    </style>
+
+    <style name="CustomWindowTitleBackground2">
+
+　　             <item name="android:background">#000000</item>
+    </style>
 
 </resources>

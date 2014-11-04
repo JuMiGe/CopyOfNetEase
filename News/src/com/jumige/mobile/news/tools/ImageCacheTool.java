@@ -24,9 +24,10 @@ public class ImageCacheTool {
 	/*
 	 * 图片缓存模块
 	 */
-	public ImageCacheTool(Context context) {
+	private int required_size ;
+	public ImageCacheTool(Context context,int size) {
 		// TODO Auto-generated constructor stub
-		
+		required_size = size;
 		mContext = context;
 		newsListDataDb = new NewsListDataDb(mContext);
 		newsHeadDataDb = new NewsHeadDataDb(mContext);
@@ -83,12 +84,12 @@ public class ImageCacheTool {
 				// 如果再找不到就去下载
 				mSoftBitmapCache.remove(url);
 				
-				bitmap2 = newsListDataDb.getNewsImg(url);
+				bitmap2 = newsListDataDb.getNewsImg(url,required_size);
 				mHardBitmapCache.put(url, bitmap2);
 				return bitmap2;
 			}
 		} else {
-			bitmap3 = newsListDataDb.getNewsImg(url);
+			bitmap3 = newsListDataDb.getNewsImg(url,required_size);
 			mHardBitmapCache.put(url, bitmap3);
 			return bitmap3;
 		}
@@ -116,13 +117,13 @@ public class ImageCacheTool {
 			} else {
 				// 如果再找不到就去下载
 				mSoftBitmapCache.remove(url);
-				bitmap2 = newsHeadDataDb.getNewsImg(url);
+				bitmap2 = newsHeadDataDb.getNewsImg(url,required_size);
 				mHardBitmapCache.put(url, bitmap2);
 				return bitmap2;
 			}
 		} else {
 			
-			bitmap3 = newsHeadDataDb.getNewsImg(url);
+			bitmap3 = newsHeadDataDb.getNewsImg(url,required_size);
 			mHardBitmapCache.put(url, bitmap3);
 			return bitmap3;
 		}

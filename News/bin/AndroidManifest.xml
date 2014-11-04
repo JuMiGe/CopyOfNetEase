@@ -7,7 +7,11 @@
     <uses-sdk
         android:minSdkVersion="11"
         android:targetSdkVersion="19" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <permission android:name="com.android.permission.RECV_NEWS" />
+
+    <uses-permission android:name="com.android.permission.RECV_NEWS" >
+    </uses-permission>
 
     <application
         android:allowBackup="true"
@@ -25,7 +29,7 @@
         </activity>
         <activity
             android:name="com.jumige.mobile.news.activity.MainActivity"
-            android:theme="@style/title" >
+            android:theme="@style/Theme.PageIndicatorDefaults" >
         </activity>
         <activity
             android:name="com.jumige.mobile.news.activity.WeatherActivity"
@@ -35,13 +39,25 @@
             android:name="com.jumige.mobile.news.activity.SearchNewsActivity"
             android:theme="@style/title" >
         </activity>
-        <activity android:name="com.jumige.mobile.news.activity.LoginActivity" 
-            android:theme="@style/title"
-            >
+        <activity
+            android:name="com.jumige.mobile.news.activity.LoginActivity"
+            android:theme="@style/title" >
         </activity>
-         <activity android:name="com.jumige.mobile.news.activity.SettingActivity" 
-            android:theme="@style/title"
-            >
+        <activity
+            android:name="com.jumige.mobile.news.activity.SettingActivity"
+            android:theme="@style/title" >
+        </activity>
+        <activity
+            android:name="com.jumige.mobile.news.activity.RegisterActivity"
+            android:theme="@style/title" >
+        </activity>
+        <activity
+            android:name="com.jumige.mobile.news.activity.NewsCotentActivity"
+            android:theme="@style/cotenttitle" >
+        </activity>
+         <activity
+            android:name="com.jumige.mobile.news.activity.HeadNewsActivity"
+            android:theme="@style/title" >
         </activity>
     </application>
 
