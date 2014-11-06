@@ -32,10 +32,12 @@ public class NewsImgPagerViewAdapter extends PagerAdapter {
 
 	public NewsImgPagerViewAdapter(Context context, List<View> views,
 			ScaleType scaleType) {
+		
 		super();
 		this.mContext = context;
 		this.views = views;
 		this.scaleType = scaleType;
+		
 	}
 
 	/*
@@ -84,6 +86,10 @@ public class NewsImgPagerViewAdapter extends PagerAdapter {
 	public void destroyItem(View container, int position, Object object) {
 		// TODO Auto-generated method stub
 		((ViewPager) container).removeView((View) object);
+	}
+	public void notifyDataSetChanged0(List<View> views){
+		this.views = views;
+		this.notifyDataSetChanged();
 	}
 
 }

@@ -105,20 +105,20 @@ public class PopMenu {
 							.show();
 					break;
 				case 3:
-					//点击“搜索”按钮,跳转页面
+					// 点击“搜索”按钮,跳转页面
 					Intent intent1 = new Intent(context,
 							SearchNewsActivity.class);
 					context.startActivity(intent1);
 					break;
 
 				case 4:
-					//点击“扫一扫”，（该功能先放一放）
+					// 点击“扫一扫”，（该功能先放一放）
 					Toast.makeText(context, "该功能先放一放", Toast.LENGTH_LONG)
-					.show();
+							.show();
 					break;
 				case 5:
-					//点击“设置”
-					Intent intent2 = new Intent(context,SettingActivity.class);
+					// 点击“设置”
+					Intent intent2 = new Intent(context, SettingActivity.class);
 					context.startActivity(intent2);
 					break;
 				}
@@ -196,13 +196,11 @@ public class PopMenu {
 				holder.item_Img = (ImageView) convertView
 						.findViewById(R.id.img_morelist_img);
 
-			} else {
+			} else
 				holder = (ViewHolder) convertView.getTag();
-			}
 
 			holder.item_Text.setText(itemList.get(position));
 			holder.item_Img.setImageResource(images[position]);
-
 			return convertView;
 		}
 

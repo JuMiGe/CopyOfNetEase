@@ -1,5 +1,7 @@
 package com.jumige.mobile.news.view.fragment;
 
+
+
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,30 +12,23 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class HeadNewsPagerFragment extends Fragment {
 	/*
 	 * 点击头条新闻，显示头条图片的Fragment
 	 */
-	private static final String KEY_CONTENT = "TestFragment:Content";
+	private ImageView img;
 	private static Bitmap bitmap;
-
-	public static HeadNewsPagerFragment newInstance(Bitmap iBitmap) {
+	public static HeadNewsPagerFragment newInstance(Bitmap b) {
+		bitmap = b;
 		HeadNewsPagerFragment fragment = new HeadNewsPagerFragment();
-		bitmap = iBitmap;
 		return fragment;
-	}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		ImageView img = new ImageView(getActivity());
+		img = new ImageView(getActivity());
 		img.setPadding(20, 20, 20, 20);
 		img.setMaxHeight(250);
 		img.setImageBitmap(bitmap);
@@ -54,5 +49,6 @@ public class HeadNewsPagerFragment extends Fragment {
 	public void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 	}
+	
 
 }

@@ -12,7 +12,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 
 public class ImageCacheTool {
-	private static final int HARD_CACHE_CAPACITY = 30;
+	private static final int HARD_CACHE_CAPACITY = 100;
 	private Context mContext;
 	private NewsListDataDb newsListDataDb;
 	private NewsHeadDataDb newsHeadDataDb;

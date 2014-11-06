@@ -1,6 +1,5 @@
 package com.jumige.mobile.news.view.fragment;
 
-import java.util.List;
 
 import android.content.Context;
 import android.gesture.GestureOverlayView;

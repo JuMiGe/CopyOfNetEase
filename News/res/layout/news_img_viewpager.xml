@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="#666666" >
 
-    <com.jumige.mobile.news.adapter.NewsImgPagerViewMark
+    <com.jumige.mobile.news.view.fragment.HeadNewsCpverMark
         android:id="@+id/my_view_pager"
         android:layout_width="match_parent"
         android:layout_height="200dp"

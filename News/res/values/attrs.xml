@@ -3,7 +3,7 @@
 
 
         <!-- 新闻大图滑动区域的自定义View -->
-        <declare-styleable name="NewsImgPagerViewMark">
+        <declare-styleable name="HeadNewsCoverMark">
             <!-- 定义底部指示物所在视图,定义为一个LinearLayout的高度，默认为40像素 -->
             <attr name="dotsViewHeight" format="dimension" />
             <!-- 定义底部指示物之间的间距，默认为0 -->
