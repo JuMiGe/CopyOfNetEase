@@ -1,0 +1,43 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item android:id="@+id/action_zone"
+        android:title="@string/zone"
+        android:orderInCategory="90"
+        android:icon="@mipmap/biz_forum_author_icon"
+        app:showAsAction="ifRoom" />
+
+
+    <item android:id="@+id/action_weather"
+        android:title="@string/weather"
+        android:orderInCategory="100"
+        android:icon="@mipmap/biz_main_menu_weather"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_offline"
+        android:title="@string/offline"
+        android:orderInCategory="100"
+        android:icon="@mipmap/biz_main_menu_offline"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_theme"
+        android:title="@string/theme"
+        android:orderInCategory="100"
+        android:icon="@mipmap/biz_main_menu_theme"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_search"
+        android:title="@string/search"
+        android:orderInCategory="100"
+        android:icon="@mipmap/biz_main_menu_search"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_scan"
+        android:title="@string/scan"
+        android:orderInCategory="100"
+        android:icon="@mipmap/biz_main_menu_scan"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_setting"
+        android:title="@string/setting"
+        android:orderInCategory="100"
+        android:icon="@mipmap/biz_main_menu_setting"
+        app:showAsAction="never"/>
+</menu>

@@ -1,16 +1,43 @@
-*.class
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.iml
-*.war
-*.ear
-/.idea
-*/.idea
-*/target
-*/bin
+# Eclipse
+.project
 .classpath
-*/*.settings
-*/gen
+.settings
+.checkstyle
+
+# IntelliJ IDEA
+.idea
+*.iml
+
+*.ipr
+*.iws
+classes
+gen-external-apklibs
+*.class
+out/
+
+# Gradle
+.gradle
+/.idea/workspace.xml
+/.idea/libraries/*
+build
+
+# Maven
+target
+release.properties
+pom.xml.*
+
+# Ant
+bin
+gen
+build.xml
+ant.properties
+local.properties
+proguard.cfg
+proguard-project.txt
+/local.properties
+
+# Other
+tmp
+.DS_Store
+
+
