@@ -32,7 +32,6 @@ public class AppRunningInBackground {
 			}
 		}
 		return appRunningInBackground;
-
 	}
 	public AppRunningInBackground(Context context) {
 		this.context = context;
