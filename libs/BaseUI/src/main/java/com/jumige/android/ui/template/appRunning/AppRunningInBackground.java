@@ -45,7 +45,6 @@ public class AppRunningInBackground {
 		}
 		
     }     
-	
 	public void onStart() {
 		if(notifyShowing && appRunningInBackground != null){
 			notifyShowing = false;
