@@ -21,7 +21,6 @@ public class AppRunningInBackground {
 	ActivityManager activityManager;
 	KeyguardManager keyguardManager;
 	private Context context = null;
-
 	private static AppRunningInBackground appRunningInBackground = null;
 	
 	public static AppRunningInBackground getInstance(Context context) {
