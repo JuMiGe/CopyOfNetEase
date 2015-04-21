@@ -1,1 +1,3 @@
 include ':app'
+
+include 'libs:BaseUI','libs:DroidCore',"libs:LibNews"
