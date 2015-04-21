@@ -29,6 +29,7 @@ public class AppRunningInBackground {
 				if (appRunningInBackground == null) {
 					appRunningInBackground = new AppRunningInBackground(context.getApplicationContext());
 				}
+                
 			}
 		}
 		return appRunningInBackground;
