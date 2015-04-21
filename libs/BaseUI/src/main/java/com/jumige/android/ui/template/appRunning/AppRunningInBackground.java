@@ -29,7 +29,6 @@ public class AppRunningInBackground {
 			synchronized (AppRunningInBackground.class) {
 				if (appRunningInBackground == null) {
 					appRunningInBackground = new AppRunningInBackground(context.getApplicationContext());
-					
 				}
 			}
 		}
