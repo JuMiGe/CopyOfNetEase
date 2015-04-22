@@ -1,6 +1,6 @@
 package me.cyning.news;
 
-import android.app.Application;
+import com.jumige.android.libbell.BaseNetEaseApplication;
 
 /**
  * Author: cyning
@@ -8,5 +8,13 @@ import android.app.Application;
  * Time  : 下午11:34
  * Desc  : 类/接口描述
  */
-public class JumigeApplication extends Application {
+public class JumigeApplication extends BaseNetEaseApplication {
+
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        initLog(true);
+    }
 }

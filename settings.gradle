@@ -1,3 +1,7 @@
-include ':app'
+include ':app', ':AyncHttpClinet', ':LibNERss'
 
-include 'libs:BaseUI','libs:DroidCore',"libs:LibNews"
+include 'libs:BaseUI','libs:DroidCore',"libs:LibNews",'libs:Librest'
+
+
+project(':AyncHttpClinet').projectDir = new File('libs/AyncHttpClinet')
+project(':LibNERss').projectDir = new File('libs/LibNERss')

@@ -2,7 +2,6 @@ package me.cyning.news.ui;
 
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -11,25 +10,59 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
+import com.jumige.android.common.utils.LayzLog;
+import com.jumige.android.ui.template.base.BaseActivity;
+
+import org.apache.http.Header;
+import org.json.JSONObject;
+
 import java.lang.reflect.Method;
 
+import cyning.me.libnerss.rss.Channel.ChanInfo;
+import cyning.me.libnerss.rss.NetEaseClient;
+import cyning.me.libnerss.rss.NetEaseHandler;
 import me.cyning.news.R;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity {
     protected Toolbar toolbar;
     protected DrawerLayout mDrawerLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        NetEaseHandler mHandler = new NetEaseHandler("default-topicset",ChanInfo.class){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                LayzLog.d("json =%s",response.toString());
+
+            }
+        };
+        NetEaseClient.getInstance().getAllChannels(mHandler);
+    }
+
+    @Override
+    protected void setContentView() {
+        super.setContentView();
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void setupViews() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
-        toolbar.setLogo(R.mipmap.base_common_default_icon_big);//����logo
-        setSupportActionBar(toolbar);//����toolbar
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
+        toolbar.setLogo(R.mipmap.base_common_default_icon_big);
+        setSupportActionBar(toolbar);
 
+        initDrawerLayout();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flMain,MainFragment.newInstance()).commit();
+    }
+
+    private void initDrawerLayout() {
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerlayout);
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.open, R.string.close) {
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -44,32 +77,21 @@ public class MainActivity extends ActionBarActivity {
             }
         };
         mDrawerToggle.syncState();
-        mDrawerLayout.setDrawerListener(mDrawerToggle);//���ü�����
-
-
-
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        //������Ǹ�������
         if (id == R.id.action_zone) {
             return toggleDrawerLayout();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
