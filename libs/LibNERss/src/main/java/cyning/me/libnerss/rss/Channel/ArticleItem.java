@@ -3,6 +3,8 @@ package cyning.me.libnerss.rss.Channel;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Author: cyning
  * Date  : 2015.04.22
@@ -13,72 +15,59 @@ public class ArticleItem implements Parcelable {
 
 
     /**
-     * template : manual
-     * lmodify : 2015-04-20 22:11:19
-     * source : 网易
-     * title : 不可复制的朝阳群众
-     * hasImg : 0
-     * digest : 举报毒星嫖星不在话下，朝阳群众凭什么出名？
-     * boardid : tinyblog_bbs
-     * alias : Visual News
-     * hasAD : 0
-     * imgsrc : http://img2.cache.netease.com/3g/2015/4/20/2015042013421647763.png
-     * ptime : 2015-04-20 17:38:46
-     * hasHead : 1
-     * order : 1
-     * imgType : 1
-     * editor : d
-     * votecount : 2353
-     * hasCover : true
-     * docid : ANLNFSL90004659K
-     * tname : 画报
-     * url_3w : http://help.3g.163.com/15/0420/17/ANLNFSL90004659K.html
-     * priority : 86
-     * url : http://3g.163.com/ntes/15/0420/17/ANLNFSL90004659K.html
-     * replyCount : 2674
-     * ename : Huabao
-     * hasIcon : true
+     * editor :
+     * votecount : 3186
+     * docid : ALNTLFOR00014J1V
+     * lmodify : 2015-03-27 18:14:41
+     * url_3w : http://news.163.com/15/0327/17/ALNTLFOR00014J1V.html
+     * source : 网易探索
+     * title : 跳标准广场舞 做标准中国人
+     * priority : 70
+     * url : http://3g.163.com/news/15/0327/17/ALNTLFOR00014J1V.html
+     * replyCount : 3647
      * subtitle :
-     * TAG : 画报
-     * TAGS : 画报
-     * cid : C1348647991705
+     * digest : 国家体育总局要标准化《小苹果》，测测你是否标准。
+     * boardid : news_shehui7_bbs
+     * imgsrc : http://img1.cache.netease.com/3g/2015/3/27/2015032717590190384.jpg
+     * ptime : 2015-03-27 17:33:46
+     * imgType : 1
      */
-    private String template;
+    @SerializedName("a")
+    private String editor;
+    private int votecount;
+    private String docid;
     private String lmodify;
+    private String url_3w;
     private String source;
     private String title;
-    private int hasImg;
-    private String digest;
-    private String boardid;
-    private String alias;
-    private int hasAD;
-    private String imgsrc;
-    private String ptime;
-    private int hasHead;
-    private int order;
-    private int imgType;
-//    private String editor;
-    private int votecount;
-    private boolean hasCover;
-    private String docid;
-    private String tname;
-    private String url_3w;
     private int priority;
     private String url;
     private int replyCount;
-    private String ename;
-    private boolean hasIcon;
     private String subtitle;
-    private String TAG;
-    private String TAGS;
-    private String cid;
+    private String digest;
+    private String boardid;
+    private String imgsrc;
+    private String ptime;
+    private int imgType;
 
-    public void setTemplate(String template) {
-        this.template = template;
+    public void setEditor(String editor) {
+        this.editor = editor;
+    }
+
+    public void setVotecount(int votecount) {
+        this.votecount = votecount;
+    }
+
+    public void setDocid(String docid) {
+        this.docid = docid;
     }
 
     public void setLmodify(String lmodify) {
         this.lmodify = lmodify;
+    }
+
+    public void setUrl_3w(String url_3w) {
+        this.url_3w = url_3w;
     }
 
     public void setSource(String source) {
@@ -87,70 +76,6 @@ public class ArticleItem implements Parcelable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public void setHasImg(int hasImg) {
-        this.hasImg = hasImg;
-    }
-
-    public void setDigest(String digest) {
-        this.digest = digest;
-    }
-
-    public void setBoardid(String boardid) {
-        this.boardid = boardid;
-    }
-
-    public void setAlias(String alias) {
-        this.alias = alias;
-    }
-
-    public void setHasAD(int hasAD) {
-        this.hasAD = hasAD;
-    }
-
-    public void setImgsrc(String imgsrc) {
-        this.imgsrc = imgsrc;
-    }
-
-    public void setPtime(String ptime) {
-        this.ptime = ptime;
-    }
-
-    public void setHasHead(int hasHead) {
-        this.hasHead = hasHead;
-    }
-
-    public void setOrder(int order) {
-        this.order = order;
-    }
-
-    public void setImgType(int imgType) {
-        this.imgType = imgType;
-    }
-
-//    public void setEditor(String editor) {
-//        this.editor = editor;
-//    }
-
-    public void setVotecount(int votecount) {
-        this.votecount = votecount;
-    }
-
-    public void setHasCover(boolean hasCover) {
-        this.hasCover = hasCover;
-    }
-
-    public void setDocid(String docid) {
-        this.docid = docid;
-    }
-
-    public void setTname(String tname) {
-        this.tname = tname;
-    }
-
-    public void setUrl_3w(String url_3w) {
-        this.url_3w = url_3w;
     }
 
     public void setPriority(int priority) {
@@ -165,36 +90,48 @@ public class ArticleItem implements Parcelable {
         this.replyCount = replyCount;
     }
 
-    public void setEname(String ename) {
-        this.ename = ename;
-    }
-
-    public void setHasIcon(boolean hasIcon) {
-        this.hasIcon = hasIcon;
-    }
-
     public void setSubtitle(String subtitle) {
         this.subtitle = subtitle;
     }
 
-    public void setTAG(String TAG) {
-        this.TAG = TAG;
+    public void setDigest(String digest) {
+        this.digest = digest;
     }
 
-    public void setTAGS(String TAGS) {
-        this.TAGS = TAGS;
+    public void setBoardid(String boardid) {
+        this.boardid = boardid;
     }
 
-    public void setCid(String cid) {
-        this.cid = cid;
+    public void setImgsrc(String imgsrc) {
+        this.imgsrc = imgsrc;
     }
 
-    public String getTemplate() {
-        return template;
+    public void setPtime(String ptime) {
+        this.ptime = ptime;
+    }
+
+    public void setImgType(int imgType) {
+        this.imgType = imgType;
+    }
+
+    public String getEditor() {
+        return editor;
+    }
+
+    public int getVotecount() {
+        return votecount;
+    }
+
+    public String getDocid() {
+        return docid;
     }
 
     public String getLmodify() {
         return lmodify;
+    }
+
+    public String getUrl_3w() {
+        return url_3w;
     }
 
     public String getSource() {
@@ -203,70 +140,6 @@ public class ArticleItem implements Parcelable {
 
     public String getTitle() {
         return title;
-    }
-
-    public int getHasImg() {
-        return hasImg;
-    }
-
-    public String getDigest() {
-        return digest;
-    }
-
-    public String getBoardid() {
-        return boardid;
-    }
-
-    public String getAlias() {
-        return alias;
-    }
-
-    public int getHasAD() {
-        return hasAD;
-    }
-
-    public String getImgsrc() {
-        return imgsrc;
-    }
-
-    public String getPtime() {
-        return ptime;
-    }
-
-    public int getHasHead() {
-        return hasHead;
-    }
-
-    public int getOrder() {
-        return order;
-    }
-
-    public int getImgType() {
-        return imgType;
-    }
-
-//    public String getEditor() {
-//        return editor;
-//    }
-
-    public int getVotecount() {
-        return votecount;
-    }
-
-    public boolean isHasCover() {
-        return hasCover;
-    }
-
-    public String getDocid() {
-        return docid;
-    }
-
-    public String getTname() {
-        return tname;
-    }
-
-    public String getUrl_3w() {
-        return url_3w;
     }
 
     public int getPriority() {
@@ -281,63 +154,28 @@ public class ArticleItem implements Parcelable {
         return replyCount;
     }
 
-    public String getEname() {
-        return ename;
-    }
-
-    public boolean isHasIcon() {
-        return hasIcon;
-    }
-
     public String getSubtitle() {
         return subtitle;
     }
 
-    public String getTAG() {
-        return TAG;
+    public String getDigest() {
+        return digest;
     }
 
-    public String getTAGS() {
-        return TAGS;
+    public String getBoardid() {
+        return boardid;
     }
 
-    public String getCid() {
-        return cid;
+    public String getImgsrc() {
+        return imgsrc;
     }
 
+    public String getPtime() {
+        return ptime;
+    }
 
-    @Override
-    public String toString() {
-        return "ArticleItem{" +
-                "template='" + template + '\'' +
-                ", lmodify='" + lmodify + '\'' +
-                ", source='" + source + '\'' +
-                ", title='" + title + '\'' +
-                ", hasImg=" + hasImg +
-                ", digest='" + digest + '\'' +
-                ", boardid='" + boardid + '\'' +
-                ", alias='" + alias + '\'' +
-                ", hasAD=" + hasAD +
-                ", imgsrc='" + imgsrc + '\'' +
-                ", ptime='" + ptime + '\'' +
-                ", hasHead=" + hasHead +
-                ", order=" + order +
-                ", imgType=" + imgType +
-                ", votecount=" + votecount +
-                ", hasCover=" + hasCover +
-                ", docid='" + docid + '\'' +
-                ", tname='" + tname + '\'' +
-                ", url_3w='" + url_3w + '\'' +
-                ", priority=" + priority +
-                ", url='" + url + '\'' +
-                ", replyCount=" + replyCount +
-                ", ename='" + ename + '\'' +
-                ", hasIcon=" + hasIcon +
-                ", subtitle='" + subtitle + '\'' +
-                ", TAG='" + TAG + '\'' +
-                ", TAGS='" + TAGS + '\'' +
-                ", cid='" + cid + '\'' +
-                '}';
+    public int getImgType() {
+        return imgType;
     }
 
 
@@ -348,71 +186,47 @@ public class ArticleItem implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.template);
+        dest.writeString(this.editor);
+        dest.writeInt(this.votecount);
+        dest.writeString(this.docid);
         dest.writeString(this.lmodify);
+        dest.writeString(this.url_3w);
         dest.writeString(this.source);
         dest.writeString(this.title);
-        dest.writeInt(this.hasImg);
-        dest.writeString(this.digest);
-        dest.writeString(this.boardid);
-        dest.writeString(this.alias);
-        dest.writeInt(this.hasAD);
-        dest.writeString(this.imgsrc);
-        dest.writeString(this.ptime);
-        dest.writeInt(this.hasHead);
-        dest.writeInt(this.order);
-        dest.writeInt(this.imgType);
-        dest.writeInt(this.votecount);
-        dest.writeByte(hasCover ? (byte) 1 : (byte) 0);
-        dest.writeString(this.docid);
-        dest.writeString(this.tname);
-        dest.writeString(this.url_3w);
         dest.writeInt(this.priority);
         dest.writeString(this.url);
         dest.writeInt(this.replyCount);
-        dest.writeString(this.ename);
-        dest.writeByte(hasIcon ? (byte) 1 : (byte) 0);
         dest.writeString(this.subtitle);
-        dest.writeString(this.TAG);
-        dest.writeString(this.TAGS);
-        dest.writeString(this.cid);
+        dest.writeString(this.digest);
+        dest.writeString(this.boardid);
+        dest.writeString(this.imgsrc);
+        dest.writeString(this.ptime);
+        dest.writeInt(this.imgType);
     }
 
     public ArticleItem() {
     }
 
     private ArticleItem(Parcel in) {
-        this.template = in.readString();
+        this.editor = in.readString();
+        this.votecount = in.readInt();
+        this.docid = in.readString();
         this.lmodify = in.readString();
+        this.url_3w = in.readString();
         this.source = in.readString();
         this.title = in.readString();
-        this.hasImg = in.readInt();
-        this.digest = in.readString();
-        this.boardid = in.readString();
-        this.alias = in.readString();
-        this.hasAD = in.readInt();
-        this.imgsrc = in.readString();
-        this.ptime = in.readString();
-        this.hasHead = in.readInt();
-        this.order = in.readInt();
-        this.imgType = in.readInt();
-        this.votecount = in.readInt();
-        this.hasCover = in.readByte() != 0;
-        this.docid = in.readString();
-        this.tname = in.readString();
-        this.url_3w = in.readString();
         this.priority = in.readInt();
         this.url = in.readString();
         this.replyCount = in.readInt();
-        this.ename = in.readString();
-        this.hasIcon = in.readByte() != 0;
         this.subtitle = in.readString();
-        this.TAG = in.readString();
-        this.TAGS = in.readString();
-        this.cid = in.readString();
+        this.digest = in.readString();
+        this.boardid = in.readString();
+        this.imgsrc = in.readString();
+        this.ptime = in.readString();
+        this.imgType = in.readInt();
     }
 
-    public static final Parcelable.Creator<ArticleItem> CREATOR = new Parcelable.Creator<ArticleItem>() {
+    public static final Creator<ArticleItem> CREATOR = new Creator<ArticleItem>() {
         public ArticleItem createFromParcel(Parcel source) {
             return new ArticleItem(source);
         }
@@ -421,4 +235,26 @@ public class ArticleItem implements Parcelable {
             return new ArticleItem[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return "ArticleItem{" +
+                "editor='" + editor + '\'' +
+                ", votecount=" + votecount +
+                ", docid='" + docid + '\'' +
+                ", lmodify='" + lmodify + '\'' +
+                ", url_3w='" + url_3w + '\'' +
+                ", source='" + source + '\'' +
+                ", title='" + title + '\'' +
+                ", priority=" + priority +
+                ", url='" + url + '\'' +
+                ", replyCount=" + replyCount +
+                ", subtitle='" + subtitle + '\'' +
+                ", digest='" + digest + '\'' +
+                ", boardid='" + boardid + '\'' +
+                ", imgsrc='" + imgsrc + '\'' +
+                ", ptime='" + ptime + '\'' +
+                ", imgType=" + imgType +
+                '}';
+    }
 }

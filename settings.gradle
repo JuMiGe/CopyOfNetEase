@@ -1,7 +1,8 @@
-include ':app', ':AyncHttpClinet', ':LibNERss'
+include ':app', ':AyncHttpClinet', ':LibNERss', ':shapeloading'
 
 include 'libs:BaseUI','libs:DroidCore',"libs:LibNews",'libs:Librest'
 
 
 project(':AyncHttpClinet').projectDir = new File('libs/AyncHttpClinet')
 project(':LibNERss').projectDir = new File('libs/LibNERss')
+project(':shapeloading').projectDir = new File('libs/shapeloading')

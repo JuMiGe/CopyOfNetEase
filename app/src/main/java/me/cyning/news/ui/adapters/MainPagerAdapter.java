@@ -4,6 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.jumige.android.common.utils.CollectionUtil;
+
+import java.util.ArrayList;
+
+import cyning.me.libnerss.rss.Channel.ChanInfo;
 import me.cyning.news.ui.NewsDetailFragment;
 
 /**
@@ -13,25 +18,29 @@ import me.cyning.news.ui.NewsDetailFragment;
  * Desc  : 主页面的PageAdapter
  */
 public class MainPagerAdapter extends FragmentStatePagerAdapter {
+    private ArrayList<ChanInfo> mChanInfos;
 
 
-    String[] title = { "项目一", "项目二", "项目三" };
     public MainPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        return new NewsDetailFragment();
+        return  NewsDetailFragment.newInstance(mChanInfos.get(position));
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return !CollectionUtil.isListMoreOne(mChanInfos)?0:mChanInfos.size();
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return title[position];
+        return mChanInfos.get(position).getTname();
+    }
+
+    public void setChanInfos(ArrayList<ChanInfo> _chanInfos) {
+        mChanInfos = _chanInfos;
     }
 }

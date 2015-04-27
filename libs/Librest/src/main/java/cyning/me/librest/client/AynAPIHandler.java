@@ -25,7 +25,7 @@ public class AynAPIHandler extends JsonHttpResponseHandler implements BaseApiHan
     }
 
     @Override
-    public final void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+    public  void onSuccess(int statusCode, Header[] headers, JSONArray response) {
         super.onSuccess(statusCode, headers, response);
     }
 

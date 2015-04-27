@@ -33,15 +33,7 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        NetEaseHandler mHandler = new NetEaseHandler("default-topicset",ChanInfo.class){
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                super.onSuccess(statusCode, headers, response);
-                LayzLog.d("json =%s",response.toString());
 
-            }
-        };
-        NetEaseClient.getInstance().getAllChannels(mHandler);
     }
 
     @Override

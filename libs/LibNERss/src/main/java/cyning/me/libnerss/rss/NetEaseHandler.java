@@ -6,7 +6,6 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import cyning.me.libnerss.rss.Channel.ChanInfo;
 import cyning.me.librest.client.AynAPIHandler;
 
 /**
@@ -15,7 +14,7 @@ import cyning.me.librest.client.AynAPIHandler;
  * Time  : 上午12:02
  * Desc  : 类/接口描述
  */
-public class NetEaseHandler extends AynAPIHandler{
+public class NetEaseHandler<T> extends AynAPIHandler{
 
     public String tag;
 
@@ -50,12 +49,24 @@ public class NetEaseHandler extends AynAPIHandler{
     public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
         super.onSuccess(statusCode, headers, response);
 
+        onSuccess(response.toString());
         if (!StringUtils.isEmpty(tag)){
             JSONArray itemInfos = response.optJSONArray(tag);
-            NetEaseParser.getItems(itemInfos.toString(), ChanInfo.class);
-
+            parseJsonArr(itemInfos);
         }
     }
+    @Override
+    public  void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+        onSuccess(response.toString());
+    }
+
+
+
+
+    public void  parseJsonArr(JSONArray itemInfos){
+
+    }
+
 
     @Override
     public void onStart() {

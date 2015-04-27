@@ -29,4 +29,9 @@ public class NetEaseClient extends AsynHttpClient {
        doGet(url,url,_netEaseHandler);
    }
 
+    public void getArticleList(String tid,boolean isHeadLine,long pageNo,NetEaseHandler _netEaseHandler){
+        String url = WebInterface.getArticleList(tid,isHeadLine,pageNo);
+        doGet(url,url,_netEaseHandler);
+    }
+
 }

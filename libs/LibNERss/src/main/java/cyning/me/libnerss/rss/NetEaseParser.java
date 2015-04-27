@@ -1,12 +1,16 @@
 package cyning.me.libnerss.rss;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
-import com.jumige.android.common.utils.LayzLog;
+import com.jumige.android.common.utils.StringUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import cyning.me.libnerss.rss.Channel.ArticleItem;
+import cyning.me.libnerss.rss.Channel.ChanInfo;
 import cyning.me.libnerss.utils.GsonUtils;
 
 /**
@@ -18,15 +22,66 @@ import cyning.me.libnerss.utils.GsonUtils;
 public class NetEaseParser {
 
 
-    public static <T> List<T> getItems(String jsonString, final Class<T> cls) {
-        List<T> list = new ArrayList<T>();
+    /**
+     * 解析所有的Channel
+     * @param string
+     * @return
+     */
+    public static ArrayList<ChanInfo> allChannels(String string){
+        ArrayList<ChanInfo> mArrayList = null;
         try {
-            Gson gson = GsonUtils.Instance.getInstance();
-            list = gson.fromJson(jsonString, new TypeToken<List<T>>() {
-            }.getType());
-        } catch (Exception e) {
+
+
+            if (!StringUtils.isEmpty(string)){
+                mArrayList = new ArrayList<ChanInfo>();
+                JSONArray mJSONArray = new JSONArray(string);
+                int size = mJSONArray.length();
+                for (int i = 0; i < size; i++) {
+                    JSONObject topicList = mJSONArray.optJSONObject(i);
+                    String cname = topicList.optString("cName");
+                    String cid = topicList.optString("cid");
+
+                    JSONArray topics = topicList.optJSONArray("tList");
+                    int topSize = topics.length();
+
+                    for (int j=0;j<topSize;j++){
+                        JSONObject mTopic  = topics.optJSONObject(j);
+                        Gson gson = GsonUtils.Instance.getInstance();
+                        ChanInfo mChanInfo  = gson.fromJson(mTopic.toString(), ChanInfo.class);
+                        mChanInfo.setcName(cname);
+                        mChanInfo.setCid(cid);
+                        mArrayList.add(mChanInfo);
+
+
+                    }
+                }
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-        LayzLog.d("list-->%s",list);
-        return list;
+        return  mArrayList;
+
     }
+
+   public static  ArrayList<ArticleItem>  getArticalList(JSONArray itemInfos ){
+
+       ArrayList<ArticleItem> mArticleItems = null;
+       if (itemInfos != null){
+           int size = itemInfos.length();
+           mArticleItems = new ArrayList<>();
+           for (int i = 0; i < size; i++) {
+
+               JSONObject  mArticalObj = itemInfos.optJSONObject(i);
+               Gson gson = GsonUtils.Instance.getInstance();
+               ArticleItem mArticleItem  = gson.fromJson(mArticalObj.toString(), ArticleItem.class);
+               mArticleItems.add(mArticleItem);
+           }
+       }
+       return mArticleItems;
+   }
+
+
+
+
 }
