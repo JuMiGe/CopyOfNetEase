@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="login_hint_account">账号：狗民网账号可直接登录</string>
+    <string name="login_hint_account">账号：网易账号可直接登录</string>
     <string name="login_hint_password">密码：6–16位字符</string>
     <string name="login_other_account">或使用以下帐号登录</string>
     <string name="login_sina">微博帐号登录</string>
