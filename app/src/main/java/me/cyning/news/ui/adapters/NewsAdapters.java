@@ -1,11 +1,12 @@
 package me.cyning.news.ui.adapters;
 
-import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.jumige.android.common.adapter.ArrayListAdapter;
 import com.jumige.android.ui.template.utils.CommonViewHolder;
 
@@ -21,8 +22,17 @@ import me.cyning.news.R;
 public class NewsAdapters extends ArrayListAdapter<ArticleItem> {
 
 
-    public NewsAdapters(Context context) {
-        super(context,true);
+    private Fragment mFragment =null;
+
+    public NewsAdapters(Fragment _fragment) {
+        super(_fragment.getActivity(),true);
+        this.mFragment = _fragment;
+
+    }
+
+    @Override
+    public ArticleItem getItem(int position) {
+        return super.getItem(position);
     }
 
     @Override
@@ -38,8 +48,16 @@ public class NewsAdapters extends ArrayListAdapter<ArticleItem> {
         TextView  tvSubTitle   = CommonViewHolder.get(convertView,R.id.tvSubTitle);
 
 
+        ArticleItem mItem = getItem(position);
+
+        Glide.with(mFragment)
+                .load(mItem.getImgsrc())
+                .centerCrop()
+                .placeholder(R.drawable.icon_title)
+                .crossFade()
+                .into(ivCover);
         tvTitle.setText(getItem(position).getTitle());
-        tvSubTitle.setText(getItem(position).getSubtitle());
+        tvSubTitle.setText(getItem(position).getDigest());
 
         return convertView;
     }

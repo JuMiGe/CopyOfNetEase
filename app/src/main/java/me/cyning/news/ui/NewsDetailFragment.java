@@ -76,7 +76,7 @@ public class NewsDetailFragment  extends BaseFragment{
         super.setupViews(view);
 
         mListView = v(view,R.id.lvArcticals);
-        mNewsAdapters = new NewsAdapters(getSJBActvity());
+        mNewsAdapters = new NewsAdapters(this);
 
         mListView.setAdapter(mNewsAdapters);
     }

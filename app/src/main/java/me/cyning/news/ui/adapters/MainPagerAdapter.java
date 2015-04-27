@@ -2,7 +2,7 @@ package me.cyning.news.ui.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentPagerAdapter;
 
 import com.jumige.android.common.utils.CollectionUtil;
 
@@ -17,7 +17,7 @@ import me.cyning.news.ui.NewsDetailFragment;
  * Time  : 下午6:31
  * Desc  : 主页面的PageAdapter
  */
-public class MainPagerAdapter extends FragmentStatePagerAdapter {
+public class MainPagerAdapter extends FragmentPagerAdapter {
     private ArrayList<ChanInfo> mChanInfos;
 
 
