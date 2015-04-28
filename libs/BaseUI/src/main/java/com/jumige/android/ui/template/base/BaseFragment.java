@@ -24,12 +24,12 @@ public class BaseFragment extends Fragment {
         for (IFragmentLife mFragLife:mSubscribers){
             mFragLife.onCreate(this);
         }
-        LayzLog.w(this.getClass().getSimpleName() + " >>> %s", "onCreate");
+        LayzLog.d(this.getClass().getSimpleName() + " >>> %s", "onCreate");
     }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        LayzLog.w(this.getClass().getSimpleName() + ">>> %s", "onActivityCreated");
+        LayzLog.d(this.getClass().getSimpleName() + ">>> %s", "onActivityCreated");
     }
 
 
@@ -61,7 +61,7 @@ public class BaseFragment extends Fragment {
         for (IFragmentLife mFragLife:mSubscribers){
             mFragLife.onResume(this);
         }
-        LayzLog.w(this.getClass().getSimpleName() + ">>> %s", "onResume");
+        LayzLog.d(this.getClass().getSimpleName() + ">>> %s", "onResume");
     }
 
     @Override
@@ -70,7 +70,7 @@ public class BaseFragment extends Fragment {
         for (IFragmentLife mFragLife:mSubscribers){
             mFragLife.onPause(this);
         }
-        LayzLog.w(this.getClass().getSimpleName() + ">>> %s", "onPause");
+        LayzLog.d(this.getClass().getSimpleName() + ">>> %s", "onPause");
     }
 
     @Override
@@ -79,7 +79,7 @@ public class BaseFragment extends Fragment {
         for (IFragmentLife mFragLife:mSubscribers){
             mFragLife.onStart(this);
         }
-        LayzLog.w(this.getClass().getSimpleName() + ">>> %s", "onStart");
+        LayzLog.d(this.getClass().getSimpleName() + ">>> %s", "onStart");
     }
 
     @Override
@@ -88,7 +88,7 @@ public class BaseFragment extends Fragment {
         for (IFragmentLife mFragLife:mSubscribers){
             mFragLife.onStop(this);
         }
-        LayzLog.w(this.getClass().getSimpleName() + ">>> %s", "onStop");
+        LayzLog.d(this.getClass().getSimpleName() + ">>> %s", "onStop");
     }
 
     @Override
@@ -97,7 +97,7 @@ public class BaseFragment extends Fragment {
         for (IFragmentLife mFragLife:mSubscribers){
             mFragLife.onDestroy(this);
         }
-        LayzLog.w(this.getClass().getSimpleName() + ">>> %s", "onDestroy");
+        LayzLog.d(this.getClass().getSimpleName() + ">>> %s", "onDestroy");
     }
 
     public <T extends View> T v(View v,int id){

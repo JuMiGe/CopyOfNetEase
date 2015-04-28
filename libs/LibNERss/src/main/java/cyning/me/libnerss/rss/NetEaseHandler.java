@@ -2,11 +2,11 @@ package cyning.me.libnerss.rss;
 
 import com.jumige.android.common.utils.StringUtils;
 
-import org.apache.http.Header;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
-import cyning.me.librest.client.AynAPIHandler;
+import cyning.me.libnerss.network.BaseApiHandler;
 
 /**
  * Author: cyning
@@ -14,7 +14,7 @@ import cyning.me.librest.client.AynAPIHandler;
  * Time  : 上午12:02
  * Desc  : 类/接口描述
  */
-public class NetEaseHandler<T> extends AynAPIHandler{
+public class NetEaseHandler<T> extends BaseApiHandler{
 
     public String tag;
 
@@ -45,20 +45,7 @@ public class NetEaseHandler<T> extends AynAPIHandler{
         mClazz = _class;
     }
 
-    @Override
-    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-        super.onSuccess(statusCode, headers, response);
 
-        onSuccess(response.toString());
-        if (!StringUtils.isEmpty(tag)){
-            JSONArray itemInfos = response.optJSONArray(tag);
-            parseJsonArr(itemInfos);
-        }
-    }
-    @Override
-    public  void onSuccess(int statusCode, Header[] headers, JSONArray response) {
-        onSuccess(response.toString());
-    }
 
 
 
@@ -68,28 +55,34 @@ public class NetEaseHandler<T> extends AynAPIHandler{
     }
 
 
+
+    /**************************************************** *BaseAPIHandler ************************************************************/
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onSuccess(String string) {
+
+        try {
+            JSONObject response = new JSONObject(string);
+            if (!StringUtils.isEmpty(tag)){
+                JSONArray itemInfos = response.optJSONArray(tag);
+                parseJsonArr(itemInfos);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+
+            onFailure(null,string);
+        }
     }
 
     @Override
-    public void onFinish() {
-        super.onFinish();
+    public void onFailure(String url, String string) {
+
     }
 
     @Override
-    public void onSuccess(String jsonStr) {
-        super.onSuccess(jsonStr);
+    public void onError(String string) {
+
     }
 
-    @Override
-    public void onServerError() {
-        super.onServerError();
-    }
 
-    @Override
-    public void onClientError() {
-        super.onClientError();
-    }
 }

@@ -26,7 +26,7 @@ public class NetEaseRssAPI  {
         return mInstance;
     }
 
-    public NetEaseRssAPI(Context _context) {
+    private NetEaseRssAPI(Context _context) {
         mContext = _context;
     }
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:layout_margin="@dimen/common_margin_middle"
+            android:layout_marginRight="@dimen/common_margin_small"
+            android:layout_weight="1"
+            android:id="@+id/ivCover"
+
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        <ImageView
+            android:layout_margin="@dimen/common_margin_middle"
+            android:layout_marginRight="@dimen/common_margin_small"
+            android:layout_marginLeft="@dimen/common_margin_small"
+            android:layout_weight="1"
+            android:id="@+id/ivCover2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+
+        <ImageView
+            android:layout_weight="1"
+            android:id="@+id/ivCover3"
+            android:layout_margin="@dimen/common_margin_middle"
+            android:layout_marginLeft="@dimen/common_margin_small"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"/>
+
+        </LinearLayout>
+
+
+
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+
+        android:layout_margin="@dimen/common_margin_middle"
+        android:layout_width="wrap_content"
+        style="@style/Text_Black_SUbTitle"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

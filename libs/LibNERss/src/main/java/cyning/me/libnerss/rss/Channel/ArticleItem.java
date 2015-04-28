@@ -4,6 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.google.gson.annotations.SerializedName;
+import com.jumige.android.common.utils.ParcelableUtils;
+
+import java.util.ArrayList;
 
 /**
  * Author: cyning
@@ -49,6 +52,29 @@ public class ArticleItem implements Parcelable {
     private String imgsrc;
     private String ptime;
     private int imgType;
+
+    private String skipType;
+    private String skipId;
+
+    private ArrayList<SpecialextraInfo> specialextra;
+
+    private ArrayList<ImageUrl> imgextra;
+
+    public String getSkipType() {
+        return skipType;
+    }
+
+    public void setSkipType(String _skipType) {
+        skipType = _skipType;
+    }
+
+    public String getSkipId() {
+        return skipId;
+    }
+
+    public void setSkipId(String _skipId) {
+        skipId = _skipId;
+    }
 
     public void setEditor(String editor) {
         this.editor = editor;
@@ -178,6 +204,47 @@ public class ArticleItem implements Parcelable {
         return imgType;
     }
 
+    public ArrayList<SpecialextraInfo> getSpecialextra() {
+        return specialextra;
+    }
+
+    public void setSpecialextra(ArrayList<SpecialextraInfo> _specialextra) {
+        specialextra = _specialextra;
+    }
+
+    public ArrayList<ImageUrl> getImgextra() {
+        return imgextra;
+    }
+
+    public void setImgextra(ArrayList<ImageUrl> _imgextra) {
+        imgextra = _imgextra;
+    }
+
+    @Override
+    public String toString() {
+        return "ArticleItem{" +
+                "editor='" + editor + '\'' +
+                ", votecount=" + votecount +
+                ", docid='" + docid + '\'' +
+                ", lmodify='" + lmodify + '\'' +
+                ", url_3w='" + url_3w + '\'' +
+                ", source='" + source + '\'' +
+                ", title='" + title + '\'' +
+                ", priority=" + priority +
+                ", url='" + url + '\'' +
+                ", replyCount=" + replyCount +
+                ", subtitle='" + subtitle + '\'' +
+                ", digest='" + digest + '\'' +
+                ", boardid='" + boardid + '\'' +
+                ", imgsrc='" + imgsrc + '\'' +
+                ", ptime='" + ptime + '\'' +
+                ", imgType=" + imgType +
+                ", skipType='" + skipType + '\'' +
+                ", skipId='" + skipId + '\'' +
+                ", specialextra=" + specialextra +
+                ", imgextra=" + imgextra +
+                '}';
+    }
 
     @Override
     public int describeContents() {
@@ -202,6 +269,11 @@ public class ArticleItem implements Parcelable {
         dest.writeString(this.imgsrc);
         dest.writeString(this.ptime);
         dest.writeInt(this.imgType);
+        dest.writeString(this.skipType);
+        dest.writeString(this.skipId);
+
+        ParcelableUtils.writeList(dest, this.imgextra, flags);
+        ParcelableUtils.writeList(dest, this.specialextra, flags);
     }
 
     public ArticleItem() {
@@ -224,6 +296,10 @@ public class ArticleItem implements Parcelable {
         this.imgsrc = in.readString();
         this.ptime = in.readString();
         this.imgType = in.readInt();
+        this.skipType = in.readString();
+        this.skipId = in.readString();
+        this.imgextra =ParcelableUtils.readParcelableList(in,ImageUrl.class.getClassLoader());
+        this.specialextra =ParcelableUtils.readParcelableList(in,SpecialextraInfo.class.getClassLoader());
     }
 
     public static final Creator<ArticleItem> CREATOR = new Creator<ArticleItem>() {
@@ -236,25 +312,53 @@ public class ArticleItem implements Parcelable {
         }
     };
 
-    @Override
-    public String toString() {
-        return "ArticleItem{" +
-                "editor='" + editor + '\'' +
-                ", votecount=" + votecount +
-                ", docid='" + docid + '\'' +
-                ", lmodify='" + lmodify + '\'' +
-                ", url_3w='" + url_3w + '\'' +
-                ", source='" + source + '\'' +
-                ", title='" + title + '\'' +
-                ", priority=" + priority +
-                ", url='" + url + '\'' +
-                ", replyCount=" + replyCount +
-                ", subtitle='" + subtitle + '\'' +
-                ", digest='" + digest + '\'' +
-                ", boardid='" + boardid + '\'' +
-                ", imgsrc='" + imgsrc + '\'' +
-                ", ptime='" + ptime + '\'' +
-                ", imgType=" + imgType +
-                '}';
+    public  static class ImageUrl implements Parcelable {
+        private String imgsrc ;
+
+        public String getImgsrc() {
+            return imgsrc;
+        }
+
+        public void setImgsrc(String _imgsrc) {
+            imgsrc = _imgsrc;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.imgsrc);
+        }
+
+        public ImageUrl() {
+        }
+
+        private ImageUrl(Parcel in) {
+            this.imgsrc = in.readString();
+        }
+
+        public static final Creator<ImageUrl> CREATOR = new Creator<ImageUrl>() {
+            public ImageUrl createFromParcel(Parcel source) {
+                return new ImageUrl(source);
+            }
+
+            public ImageUrl[] newArray(int size) {
+                return new ImageUrl[size];
+            }
+        };
+
+
+        @Override
+        public String toString() {
+            return "ImageUrl{" +
+                    "imgsrc='" + imgsrc + '\'' +
+                    '}';
+        }
     }
+
+
+
 }

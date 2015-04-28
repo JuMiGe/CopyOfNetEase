@@ -1,6 +1,7 @@
 package cyning.me.libnerss.rss;
 
-import cyning.me.librest.client.AsynHttpClient;
+
+import cyning.me.libnerss.network.RestHttpClient;
 
 /**
  * Author: cyning
@@ -8,10 +9,13 @@ import cyning.me.librest.client.AsynHttpClient;
  * Time  : 上午12:34
  * Desc  : 类/接口描述
  */
-public class NetEaseClient extends AsynHttpClient {
+public class NetEaseClient  {
 
 
     private static NetEaseClient mInstance = null;
+
+
+    private  RestHttpClient mHttpClient;
 
     public static NetEaseClient getInstance() {
         if (mInstance == null) {
@@ -24,14 +28,24 @@ public class NetEaseClient extends AsynHttpClient {
         return mInstance;
     }
 
+
+    private NetEaseClient(){
+        mHttpClient = RestHttpClient.getInstance();
+
+    }
    public void getAllChannels(NetEaseHandler _netEaseHandler){
        String url = WebInterface.getTopicList();
-       doGet(url,url,_netEaseHandler);
+       mHttpClient.doGet(url,url,_netEaseHandler);
    }
 
     public void getArticleList(String tid,boolean isHeadLine,long pageNo,NetEaseHandler _netEaseHandler){
         String url = WebInterface.getArticleList(tid,isHeadLine,pageNo);
-        doGet(url,url,_netEaseHandler);
+        mHttpClient.doGet(tid+"_"+pageNo,url,_netEaseHandler);
     }
+
+    public void cancelArticleList(String tid,long pageNo){
+        mHttpClient.cancel(tid+"_"+pageNo);
+    }
+
 
 }

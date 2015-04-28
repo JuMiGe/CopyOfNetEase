@@ -10,12 +10,18 @@
     <!--android:id="@+id/loadView"-->
     <!--/>-->
     <!--app:loadingText="加薪中..."-->
-
-    <ListView
-        android:id="@+id/lvArcticals"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeL"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/lvArcticals"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
         </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>

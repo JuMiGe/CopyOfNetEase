@@ -9,7 +9,7 @@ import com.jumige.android.common.utils.CollectionUtil;
 import java.util.ArrayList;
 
 import cyning.me.libnerss.rss.Channel.ChanInfo;
-import me.cyning.news.ui.NewsDetailFragment;
+import me.cyning.news.ui.ArticleListFragment;
 
 /**
  * Author: cyning
@@ -27,7 +27,7 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return  NewsDetailFragment.newInstance(mChanInfos.get(position));
+        return  ArticleListFragment.newInstance(mChanInfos.get(position));
     }
 
     @Override

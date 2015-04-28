@@ -16,9 +16,11 @@ import cyning.me.libnerss.rss.NetEaseParser;
  */
 public class ArticleListHandler extends NetEaseHandler {
 
-    public ArticleListHandler(String tag) {
-        super(tag, ArticleItem.class);
+    public ArticleListHandler() {
+        super( ArticleItem.class);
     }
+
+
 
 
     @Override
