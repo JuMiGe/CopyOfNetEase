@@ -10,20 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 
-import com.jumige.android.common.utils.LayzLog;
 import com.jumige.android.ui.template.base.BaseActivity;
-
-import org.apache.http.Header;
-import org.json.JSONObject;
 
 import java.lang.reflect.Method;
 
-import cyning.me.libnerss.rss.Channel.ChanInfo;
-import cyning.me.libnerss.rss.NetEaseClient;
-import cyning.me.libnerss.rss.NetEaseHandler;
 import me.cyning.news.R;
 
-
+/**
+ *
+ */
 public class MainActivity extends BaseActivity {
     protected Toolbar toolbar;
     protected DrawerLayout mDrawerLayout;

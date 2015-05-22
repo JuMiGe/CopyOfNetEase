@@ -13,7 +13,10 @@ import com.jumige.android.ui.template.utils.IFragmentLife;
 import java.util.ArrayList;
 
 /**
- * Created by cyning on 12/2/14.
+ * Fragmeng的基类
+ * <p>所有的Fragment都要继承于这个Fragment,这个类提供了部分Fragmeng可以使用的方法，如设置View的方法就是getRootViewId（）</p>
+ *
+ *
  */
 public class BaseFragment extends Fragment {
     public static ArrayList<IFragmentLife> mSubscribers = new ArrayList<>();

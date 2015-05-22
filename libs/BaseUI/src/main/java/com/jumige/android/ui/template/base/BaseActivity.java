@@ -20,8 +20,12 @@ import com.jumige.android.ui.template.utils.AcitvityHelper;
 
 import java.util.ArrayList;
 
+
 /**
- * Created by cyning on 12/2/14.
+ * Author: cyning
+ * Date  : 2015.04.22
+ * Time  : 下午6:31
+ * Desc  : 所有的Acvity都要继承的方法，这就说，这个类是所有Activity的基类
  */
 public class BaseActivity extends ActionBarActivity {
     private boolean isShowBackIcon = false;
