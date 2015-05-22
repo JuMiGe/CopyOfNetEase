@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="pink">#ffe62262</color>
+    <color name="purple">#ffb004b4</color>
+    <color name="orange">#ffff6101</color>
+
+
+    <color name="theme_lable">#ffb36e</color><!-- 爱宠图集 -->
+    <color name="buff">#ffffead9</color><!-- 浅黄色 -->
+    <color name="yellow">#ffffb400</color>
+    <color name="tiezi_content">#ff6b6b6b</color>
+    <color name="title_bar_text">#ff2c333d</color>
+
+    <!--hint的默认色-->
+    <color name="hint_gray">#ff999999</color>
+    <!-- activity 背景 -->
+    <color name="activity_bg_gray">#ffeeeeee</color>
+    <!-- activity 背景 -->
+    <color name="activity_bg_white">#ffffffff</color>
+    <!-- 分隔线 -->
+    <color name="gray_separate_s">#ffe7e6ee</color>
+    <color name="edit_image_bg">#ff737373</color>
+
+
+
+    <!-- 二级菜单 -->
+    <color name="popup_main_background">#b0000000</color>
+    <color name="choose_eara_item_press_color">#f4f4f4</color>
+    <color name="no_color">#00000000</color>
+    <color name="transparent">#00000000</color>
+</resources>
