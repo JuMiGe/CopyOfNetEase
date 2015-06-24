@@ -9,20 +9,22 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar" />
 
+
     <android.support.v4.widget.DrawerLayout
         android:layout_below="@id/toolbar"
         android:id="@+id/drawerlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--主布局-->
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/flMain"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#fff"
             >
+        </FrameLayout>
 
 
-        </LinearLayout>
         <!--侧滑菜单-->
         <LinearLayout
             android:layout_width="200dp"

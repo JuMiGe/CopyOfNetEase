@@ -1,0 +1,159 @@
+<resources>
+
+    <!-- ********** 紫色  ************* -->
+    <style name="TextPurpleVerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+    <style name="TextPurpleSmall">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+    <style name="TextPurpleNormal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+    <style name="TextPurpleLarge">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+    <style name="TextPurpleVeryLarge">
+        <item name="android:textSize">@dimen/text_size_very_large</item>
+        <item name="android:textColor">@color/purple</item>
+    </style>
+
+    <!-- ********** 橙色   ************* -->
+    <style name="TextOrangeVerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="TextOrangeSmall">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="TextOrangeNormal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="TextOrangeLarge">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+
+    <style name="TextOrangeVeryLarge">
+        <item name="android:textSize">@dimen/text_size_very_large</item>
+        <item name="android:textColor">@color/orange</item>
+    </style>
+    <!-- ********** very small ************* -->
+    <style name="TextWhiteVerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextBlackVerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextGrayVerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextPinkVerySmall">
+        <item name="android:textSize">@dimen/text_size_very_small</item>
+        <item name="android:textColor">@color/pink</item>
+    </style>
+
+    <!-- ********** small ************* -->
+    <style name="TextWhiteSmall">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextBlackSmall">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextGraySmall">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextPinkSmall">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/pink</item>
+    </style>
+
+    <!-- ********** normal ************* -->
+
+    <style name="TextWhiteNormal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextBlackNormal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextGrayNormal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextPinkNormal">
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textColor">@color/pink</item>
+    </style>
+    <!-- ********** large ************* -->
+    <style name="TextWhiteLarge">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextBlackLarge">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextGrayLarge">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextPinkLarge">
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/pink</item>
+    </style>
+
+    <!-- ********** very large ************* -->
+    <style name="TextWhiteVeryLarge">
+        <item name="android:textSize">@dimen/text_size_very_large</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="TextBlackVeryLarge">
+        <item name="android:textSize">@dimen/text_size_very_large</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="TextWGrayVeryLarge">
+        <item name="android:textSize">@dimen/text_size_very_large</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="TextWPinkVeryLarge">
+        <item name="android:textSize">@dimen/text_size_very_large</item>
+        <item name="android:textColor">@color/pink</item>
+    </style>
+
+</resources>

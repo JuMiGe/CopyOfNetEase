@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 程序中用到的字体大小 -->
+
+    <dimen name="text_size_very_large">24sp</dimen>
+    <dimen name="text_size_large">22sp</dimen>
+    <dimen name="text_size_normal">18sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_very_small">12sp</dimen>
+
+
+    <!-- 界面中item 高度 -->
+    <dimen name="title_bar_height">48dp</dimen>
+    <!-- tab 高度 -->
+    <dimen name="activity_tab_height">56dp</dimen>
+    <!-- 界面中item 高度 -->
+    <dimen name="btn_item_height">45dp</dimen>
+
+    <!-- 二级菜单  -->
+    <dimen name="head_bar_height">45dp</dimen>
+    <!-- 宠物头像大小  -->
+    <dimen name="pet_logo_height">80dp</dimen>
+    <!-- 首页 底栏 的高度  -->
+    <dimen name="home_bottom_bar_height">60dp</dimen>
+
+    <!-- 图片头像大小  -->
+    <dimen name="img_logo_size_very_large">120dp</dimen>
+    <dimen name="img_logo_size_large">85dp</dimen>
+    <dimen name="img_logo_size_normal">65dp</dimen>
+    <dimen name="img_logo_size_small">45dp</dimen>
+    <dimen name="img_logo_size_verysmall">30dp</dimen>
+
+    <!-- 版块详情头部的高度  -->
+    <dimen name="bankuai_detail_toplayout_height">120dp</dimen>
+</resources>

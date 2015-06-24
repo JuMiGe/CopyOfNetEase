@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login_hint_account">账号：网易账号可直接登录</string>
+    <string name="login_hint_password">密码：6–16位字符</string>
+    <string name="login_other_account">或使用以下帐号登录</string>
+    <string name="login_sina">微博帐号登录</string>
+    <string name="login_qq">QQ帐号登录</string>
+    <string name="toast_login_success">尊敬的用户%s，您已成功登录</string>
+
+    <string name="login">登录</string>
+    <string name="login_success">登录成功</string>
+    <string name="register">注册</string>
+    <string name="register_success">注册成功</string>
+</resources>
